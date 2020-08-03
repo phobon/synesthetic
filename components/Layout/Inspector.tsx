@@ -26,9 +26,13 @@ export const Inspector = styled(motion.section)<InspectorProps>({
   motionStackSystem,
 );
 
+
+
 Inspector.displayName = 'Inspector';
 
 const defaultProps = {
+  bg: 'grayscale.2',
+  color: 'grayscale.9',
 };
 
 Inspector.defaultProps = defaultProps;

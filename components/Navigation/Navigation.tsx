@@ -1,25 +1,45 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Stack, Box } from '@phobon/base';
-import { motion } from 'framer-motion';
+import { motion, AnimateSharedLayout } from 'framer-motion';
 
 import { Spacer } from '../Spacer';
 
 const MotionStack = motion.custom(Stack);
+const MotionBox = motion.custom(Box);
 
 const ease = [0.33, 1, 0.68, 1];
 
 export interface NavigationProps {
 }
 
-export const Navigation: React.FunctionComponent<NavigationProps & any> = ({ closeNavigation, ...props }) => {
+const NavButton: React.FunctionComponent<any> = ({ children, ...props }) => (
+  <MotionBox
+    width={32}
+    height={32}
+    bg="grayscale.3"
+    borderRadius={3}
+    
+    {...props}>
+    <MotionBox
+
+      layoutId="navItem">
+      {children}
+    </MotionBox>
+  </MotionBox>
+);
+
+export const Navigation: React.FunctionComponent<NavigationProps & any> = ({ closeNavigation, bg = 'grayscale.1', color = 'grayscale.9', ...props }) => {
   return (
     <MotionStack
       fullWidth
       fullHeight
-      as="aside"
+      as="nav"
       gridArea="nav"
       p={3}
-      space={3}
+      space={4}
+      bg={bg}
+      color={color}
       {...props}
       variants={{
         visible: {
@@ -49,18 +69,30 @@ export const Navigation: React.FunctionComponent<NavigationProps & any> = ({ clo
       initial="hidden"
       animate="visible"
       exit="exit">
-      <Stack as="nav">
-        nav
-      </Stack>
+      <Box width={32} height={32} bg="accent.4" borderRadius={5} />
+
+      <Spacer bg="grayscale.4" thickness={2} />
+
+      <AnimateSharedLayout>
+        <NavButton />
+        <NavButton />
+        <NavButton />
+
+        <Spacer bg="grayscale.4" thickness={2} />
+
+        <NavButton />
+        <NavButton />
+
+        <Spacer bg="grayscale.4" thickness={2} />
+        <Box flex={1} />
+
+        <NavButton />
+      </AnimateSharedLayout>
       
 
-      <Spacer />
-      <Box flex={1} />
-      <Spacer />
+      <Spacer bg="grayscale.4" thickness={2} />
 
-      <Stack space={3}>
-        other
-      </Stack>
+      <Box width={32} height={32} bg="accent.4" borderRadius={5} />
     </MotionStack>
   );
 };

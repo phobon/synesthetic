@@ -8,7 +8,7 @@ import { Main, Inspector } from '@/components/Layout';
 const IndexPage: NextPage = () => {
   return (
     <>
-      <Inspector bg="oranges.8">
+      <Inspector>
         <p>Inspector</p>
       </Inspector>
       <Main>

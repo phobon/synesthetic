@@ -14,8 +14,8 @@ export const Layout: React.FunctionComponent<LayoutProps> = ({ children, ...prop
       gridTemplateRows="1fr"
       gridTemplateColumns="8rem auto 1fr"
       gridTemplateAreas="'nav inspector main'"
-      bg="grayscale.9">
-      <Navigation bg="purples.9" />
+      bg="grayscale.1">
+      <Navigation bg="grayscale.1" />
       {children}
     </Grid>
   );
