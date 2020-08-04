@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 3001",
     "build": "next build",
     "start": "next start",
     "storybook": "start-storybook -p 9000"
@@ -13,6 +13,7 @@
     "drei": "^0.0.67",
     "framer-motion": "beta",
     "glslify": "^7.0.0",
+    "lerp": "^1.0.3",
     "next": "latest",
     "next-compose-plugins": "latest",
     "react": "latest",

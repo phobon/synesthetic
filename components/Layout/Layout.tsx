@@ -12,7 +12,7 @@ export const Layout: React.FunctionComponent<LayoutProps> = ({ children, ...prop
       fullWidth
       fullHeight
       gridTemplateRows="1fr"
-      gridTemplateColumns="8rem auto 1fr"
+      gridTemplateColumns="8rem minmax(40rem, 20%) 1fr"
       gridTemplateAreas="'nav inspector main'"
       bg="grayscale.1">
       <Navigation bg="grayscale.1" />

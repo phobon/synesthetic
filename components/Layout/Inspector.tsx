@@ -15,13 +15,13 @@ const motionStackSystem = compose(space, color);
 
 export const Inspector = styled(motion.section)<InspectorProps>({
     height: '100%',
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     gridArea: 'inspector',
-    width: '32rem',
   },
   motionStackSystem,
 );

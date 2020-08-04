@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import {
+  compose, space, layout, border, color, background,
+  SpaceProps, LayoutProps, ColorProps, BackgroundProps,
+} from 'styled-system';
 import { Stack, Box } from '@phobon/base';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 
@@ -8,28 +12,85 @@ import { Spacer } from '../Spacer';
 const MotionStack = motion.custom(Stack);
 const MotionBox = motion.custom(Box);
 
+const motionButtonSystem = compose(space, layout, border, color, background);
+const MotionButton = styled(motion.button)({
+  position: 'relative',
+  cursor: 'pointer',
+  border: 0,
+  '&:focus': {
+    outline: 0,
+  }
+}, motionButtonSystem)
+
 const ease = [0.33, 1, 0.68, 1];
 
 export interface NavigationProps {
 }
 
-const NavButton: React.FunctionComponent<any> = ({ children, ...props }) => (
-  <MotionBox
+const NavButton: React.FunctionComponent<any> = ({ selected, children, ...props }) => (
+  <MotionButton
     width={32}
     height={32}
     bg="grayscale.3"
     borderRadius={3}
-    
     {...props}>
-    <MotionBox
-
-      layoutId="navItem">
-      {children}
-    </MotionBox>
-  </MotionBox>
+    {selected && (
+      <MotionBox
+        layoutId="navItem"
+        css={{
+          pointerEvents: 'none',
+        }}
+        borderRadius="inherit"
+        bg="purples.4"
+        position="absolute"
+        fullWidth
+        fullHeight
+        left={0}
+        top={0}
+        zIndex={1} />
+    )}
+    {children}
+  </MotionButton>
 );
 
+interface NavItem {
+  id: string;
+  type: 'button' | 'spacer' | 'flex';
+}
+
+const navItems: NavItem[] = [
+  {
+    id: 'one', type: 'button',
+  },
+  {
+    id: 'two', type: 'button',
+  },
+  {
+    id: 'three', type: 'button',
+  },
+  {
+    id: 'spacer1', type: 'spacer',
+  },
+  {
+    id: 'four', type: 'button',
+  },
+  {
+    id: 'five', type: 'button',
+  },
+  {
+    id: 'spacer2', type: 'spacer',
+  },
+  {
+    id: 'flex', type: 'flex',
+  },
+  {
+    id: 'six', type: 'button',
+  },
+]
+
 export const Navigation: React.FunctionComponent<NavigationProps & any> = ({ closeNavigation, bg = 'grayscale.1', color = 'grayscale.9', ...props }) => {
+  const [selected, setSelected] = useState<string>(() => 'one');
+  
   return (
     <MotionStack
       fullWidth
@@ -74,21 +135,26 @@ export const Navigation: React.FunctionComponent<NavigationProps & any> = ({ clo
       <Spacer bg="grayscale.4" thickness={2} />
 
       <AnimateSharedLayout>
-        <NavButton />
-        <NavButton />
-        <NavButton />
-
-        <Spacer bg="grayscale.4" thickness={2} />
-
-        <NavButton />
-        <NavButton />
-
-        <Spacer bg="grayscale.4" thickness={2} />
-        <Box flex={1} />
-
-        <NavButton />
+        {navItems.map(({ id, type }) => {
+          switch (type) {
+            case 'spacer':
+              return (
+                <Spacer key={id} bg="grayscale.4" thickness={2} />
+              );
+            case 'flex':
+              return (
+                <Box key={id} flex={1} />
+              );
+            default:
+              return (
+                <NavButton
+                  key={id}
+                  selected={id === selected}
+                  onClick={() => setSelected(id)} />
+              );
+          }
+        })}
       </AnimateSharedLayout>
-      
 
       <Spacer bg="grayscale.4" thickness={2} />
 
