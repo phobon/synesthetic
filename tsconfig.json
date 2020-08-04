@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": [
-        "components/*/index"
+        "components/*"
       ],
       "@/components": [
         "components/index"
@@ -19,9 +19,15 @@
       ],
       "@/api": [
         "pages/api/index"
+      ],
+      "@/materials": [
+        "materials/index"
+      ],
+      "@/materials/*": [
+        "materials/*"
       ]
     },
-    "target": "es5",
+    "target": "es6",
     "lib": [
       "dom",
       "dom.iterable",

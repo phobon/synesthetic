@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import {
   compose, space, layout, border, color, background,
-  SpaceProps, LayoutProps, ColorProps, BackgroundProps,
 } from 'styled-system';
 import { Stack, Box } from '@phobon/base';
 import { motion, AnimateSharedLayout } from 'framer-motion';
@@ -86,7 +85,7 @@ const navItems: NavItem[] = [
   {
     id: 'six', type: 'button',
   },
-]
+];
 
 export const Navigation: React.FunctionComponent<NavigationProps & any> = ({ closeNavigation, bg = 'grayscale.1', color = 'grayscale.9', ...props }) => {
   const [selected, setSelected] = useState<string>(() => 'one');
