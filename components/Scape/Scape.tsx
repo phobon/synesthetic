@@ -1,14 +1,24 @@
 import React, { Suspense, useRef, useEffect, createContext, useState } from 'react';
 import { Canvas } from 'react-three-fiber';
-import { HTML } from 'drei';
+import { Html } from 'drei';
 
-export const Scape: React.FunctionComponent<any> = ({
+interface ScapeProps {
+  zoom?: number;
+  postProcessingEffects?: any[],
+  loadingPlaceholder?: React.ReactNode;
+}
+
+export const ScapeContext = createContext<ScapeProps>({
+  zoom: 0,
+});
+
+export const Scape: React.FunctionComponent<ScapeProps> = ({
   zoom = 1,
+  postProcessingEffects,
+  loadingPlaceholder,
   children,
+  ...props
 }) => {
-  const [events, setEvents] = useState(null);
-  const domContent = useRef()
-
   return (
     <>
       <Canvas
@@ -17,15 +27,16 @@ export const Scape: React.FunctionComponent<any> = ({
         colorManagement
         gl={{ alpha: false, antialias: true }}
         onCreated={({ gl, events }) => {
-          gl.setClearColor('white'),
-          gl.toneMappingExposure = 2.5,
-          gl.toneMappingWhitePoint = 1,
-          // Export canvas events, we will put them onto the scroll area
-          setEvents(events)
-        }}>
-        <Suspense fallback={<HTML portal={domContent}>{'Loading...'}</HTML>}>
-          {children}
+          gl.setClearColor('white')
+          gl.toneMappingExposure = 2.5
+        }}
+        {...props}>
+        <Suspense fallback={<Html>{'Loading...'}</Html>}>
+          <ScapeContext.Provider value={{ zoom }}>
+            {children}
+          </ScapeContext.Provider>
         </Suspense>
+        {/* {postProcessingEffects.map()} */}
       </Canvas>
     </>
   );

@@ -11,6 +11,8 @@ type InspectorProps =
   & SpaceProps
   & ColorProps;
 
+const MotionGrid = motion.custom(MotionGrid);
+
 const motionStackSystem = compose(space, color);
 
 export const Inspector = styled(motion.section)<InspectorProps>({
@@ -26,7 +28,16 @@ export const Inspector = styled(motion.section)<InspectorProps>({
   motionStackSystem,
 );
 
-
+const Inspector: React.FunctionComponent = ({ children, ...props }) => {
+  return (
+    <MotionGrid
+      as="aside"
+      gridTemplateColumns="1fr"
+      gridTemplateRows="1fr auto">
+      {children}
+    </MotionGrid>
+  )
+}
 
 Inspector.displayName = 'Inspector';
 

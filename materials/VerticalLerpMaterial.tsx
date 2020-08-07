@@ -21,41 +21,54 @@ declare global {
 
 const vertexShader = glsl`
   #define PI 3.1415926535897932384626433832795
+
   uniform float scale;
   uniform float shift;
   varying vec2 vUv;
+
   void main() {
     vec3 pos = position;
+
     // Shift each position along the x axis along a sin curve
     // So as uv.y (normalised position from 0.0 - 1.0 increases
     // It will shift its furthest away at uv.y === 0.5 - maths - neat!
     pos.x = pos.x + ((sin(uv.y * PI) * shift * 1.0) * 0.125);
+
     vUv = uv;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos,1.);
   }
 `;
 
 const fragmentShader = glsl`
-  uniform sampler2D texture;
+  uniform sampler2D tex;
+
   uniform float hasTexture;
   uniform float shift;
   uniform float scale;
+
   uniform vec3 color;
   uniform float opacity;
+
   varying vec2 vUv;
+
   void main() {
     float angle = 1.55;
+
     // Normalise coordinate space to the centre, scale the position, then return coordinate space
     vec2 p = (vUv - vec2(0.5, 0.5)) * (1.0 - scale) + vec2(0.5, 0.5);
+
     // Determine distance of offset along given vector angle
     vec2 offset = shift / 4.0 * vec2(cos(angle), sin(angle));
+
     // Create 3 texture buffers, each at a different offset (essentially the normal and 2 copies)
-    vec4 cr = texture2D(texture, p + offset);
-    vec4 cga = texture2D(texture, p);
-    vec4 cb = texture2D(texture, p - offset);
+    vec4 cr = texture2D(tex, p + offset);
+    vec4 cga = texture2D(tex, p);
+    vec4 cb = texture2D(tex, p - offset);
+
     if (hasTexture == 1.0) {
       // Shift colours based on copy coordinates
-      gl_FragColor = vec4(cr.r, cga.g, cb.b, cga.a);
+      // gl_FragColor = vec4(cr.r, cga.g, cb.b, cga.a);
+      gl_FragColor = cga;
     }
     else gl_FragColor = vec4(color, opacity);
   }
@@ -67,12 +80,12 @@ class VerticalLerpMaterialImpl extends ShaderMaterial {
       vertexShader,
       fragmentShader,
       uniforms: {
-        texture: { value: null },
+        tex: { value: null },
         hasTexture: { value: 0 },
         scale: { value: 0 },
         shift: { value: 0 },
         opacity: { value: 1 },
-        color: { value: new Color("white") }
+        color: { value: new Color("orange") }
       }
     })
   }
@@ -95,11 +108,11 @@ class VerticalLerpMaterialImpl extends ShaderMaterial {
 
   set map(value) {
     this.uniforms.hasTexture.value = !!value
-    this.uniforms.texture.value = value
+    this.uniforms.tex.value = value
   }
 
   get map() {
-    return this.uniforms.texture.value
+    return this.uniforms.tex.value
   }
 
   get color() {
@@ -122,8 +135,8 @@ export const VerticalLerpMaterial = React.forwardRef(({ offsetFactor, pages, vie
   let last = top.current;
 
   useFrame(() => {
-    materialRef.current.scale = lerp(materialRef.current.scale, offsetFactor - top.current / ((pages - 1) * viewportHeight), 0.1);
-    materialRef.current.shift = lerp(materialRef.current.shift, (top.current - last) / 150, 0.1);
+    materialRef.current.scale = 0; // lerp(materialRef.current.scale, offsetFactor - top.current / ((pages - 1) * viewportHeight), 0.1);
+    materialRef.current.shift = 0; // lerp(materialRef.current.shift, (top.current - last) / 150, 0.1);
     last = top.current;
   });
 
