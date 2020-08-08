@@ -13,7 +13,6 @@ export const Journey: React.FunctionComponent<any> = ({ images, ...props }) => {
   return (
     <>
       <group>
-        <Html>test</Html>
         {/* <SandboxPlane args={[1, 1, 32, 32]} size={size} scale={[contentMaxWidth, contentMaxWidth / aspect, 1]} frustumCulled={false} /> */}
         <VerticalLerpPlane map={img} args={[1, 1, 32, 32]} size={size} scale={[contentMaxWidth, contentMaxWidth / aspect, 1]} frustumCulled={false} />
       </group>

@@ -1,10 +1,8 @@
 import React from 'react';
 import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
-import { Grid, Box, Heading, Text, Stack } from '@phobon/base';
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
-import { Main, Inspector } from '@/components/Layout';
+import { Inspector, Status } from '@/components/Layout';
 
 const Scape = dynamic(() => 
   import('../components/Scape').then((mod) => mod.Scape),
@@ -22,14 +20,11 @@ const IndexPage: NextPage = () => {
   };
   return (
     <>
-      <Inspector>
-        <p>Inspector</p>
-      </Inspector>
-      <Main>
-        <Scape>
-          <Journey {...props} />
-        </Scape>
-      </Main>
+      <Inspector />
+      <Status />
+      <Scape>
+        <Journey {...props} />
+      </Scape>
     </>
   );
 };

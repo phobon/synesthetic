@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { compose, space, color, SpaceProps, ColorProps } from 'styled-system';
+import { Box } from '@phobon/base';
+import { compose, space, color, grid, border, SpaceProps, ColorProps, GridProps, BorderProps } from 'styled-system';
 import { motion } from 'framer-motion';
 
 interface IInspectorProps {
@@ -9,40 +10,42 @@ interface IInspectorProps {
 type InspectorProps =
   IInspectorProps
   & SpaceProps
-  & ColorProps;
+  & ColorProps
+  & GridProps
+  & BorderProps;
 
-const MotionGrid = motion.custom(MotionGrid);
+const motionStackSystem = compose(space, color, grid, border);
 
-const motionStackSystem = compose(space, color);
-
-export const Inspector = styled(motion.section)<InspectorProps>({
+const InspectorContainer = styled(motion.aside)<InspectorProps>({
     height: '100%',
     width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: 'grid',
     gridArea: 'inspector',
+    placeItems: 'center',
+    gridTemplateRows: '8rem 1fr',
+    gridTemplateColumns: '1fr',
+    borderRight: '1px solid',
   },
   motionStackSystem,
 );
 
-const Inspector: React.FunctionComponent = ({ children, ...props }) => {
-  return (
-    <MotionGrid
-      as="aside"
-      gridTemplateColumns="1fr"
-      gridTemplateRows="1fr auto">
-      {children}
-    </MotionGrid>
-  )
-}
+export const Inspector: React.FunctionComponent<InspectorProps & any> = ({ ...props }) => (
+  <InspectorContainer
+    borderColor="grayscale.2"
+    {...props}>
+    <Box fullWidth fullHeight>
+
+    </Box>
+    <Box borderTop="1px solid" borderColor="grayscale.2" fullWidth fullHeight>
+
+    </Box>
+  </InspectorContainer>
+);
 
 Inspector.displayName = 'Inspector';
 
 const defaultProps = {
-  bg: 'grayscale.2',
+  bg: 'grayscale.1',
   color: 'grayscale.9',
 };
 

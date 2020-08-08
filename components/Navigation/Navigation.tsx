@@ -13,13 +13,18 @@ const MotionBox = motion.custom(Box);
 
 const motionButtonSystem = compose(space, layout, border, color, background);
 const MotionButton = styled(motion.button)({
-  position: 'relative',
-  cursor: 'pointer',
-  border: 0,
-  '&:focus': {
-    outline: 0,
-  }
-}, motionButtonSystem)
+    position: 'relative',
+    cursor: 'pointer',
+    border: 0,
+    transition: 'transform 120ms ease-out, background-color 120ms ease-out',
+    '&:focus': {
+      outline: 0,
+    },
+  }, ({ theme }) => ({
+    '&:hover': {
+      backgroundColor: theme.colors.grayscale[2],
+    }
+  }), motionButtonSystem)
 
 const ease = [0.33, 1, 0.68, 1];
 
@@ -30,7 +35,7 @@ const NavButton: React.FunctionComponent<any> = ({ selected, children, ...props 
   <MotionButton
     width={32}
     height={32}
-    bg="grayscale.3"
+    bg="grayscale.1"
     borderRadius={3}
     {...props}>
     {selected && (
@@ -87,7 +92,7 @@ const navItems: NavItem[] = [
   },
 ];
 
-export const Navigation: React.FunctionComponent<NavigationProps & any> = ({ closeNavigation, bg = 'grayscale.1', color = 'grayscale.9', ...props }) => {
+export const Navigation: React.FunctionComponent<NavigationProps & any> = ({ closeNavigation, bg = 'grayscale.0', color = 'grayscale.9', ...props }) => {
   const [selected, setSelected] = useState<string>(() => 'one');
   
   return (
@@ -96,6 +101,8 @@ export const Navigation: React.FunctionComponent<NavigationProps & any> = ({ clo
       fullHeight
       as="nav"
       gridArea="nav"
+      borderRight="1px solid"
+      borderColor="grayscale.2"
       p={3}
       space={4}
       bg={bg}
@@ -131,14 +138,14 @@ export const Navigation: React.FunctionComponent<NavigationProps & any> = ({ clo
       exit="exit">
       <Box width={32} height={32} bg="accent.4" borderRadius={5} />
 
-      <Spacer bg="grayscale.4" thickness={2} />
+      <Spacer bg="grayscale.1" thickness={2} />
 
       <AnimateSharedLayout>
         {navItems.map(({ id, type }) => {
           switch (type) {
             case 'spacer':
               return (
-                <Spacer key={id} bg="grayscale.4" thickness={2} />
+                <Spacer key={id} bg="grayscale.1" thickness={2} />
               );
             case 'flex':
               return (
@@ -155,7 +162,7 @@ export const Navigation: React.FunctionComponent<NavigationProps & any> = ({ clo
         })}
       </AnimateSharedLayout>
 
-      <Spacer bg="grayscale.4" thickness={2} />
+      <Spacer bg="grayscale.1" thickness={2} />
 
       <Box width={32} height={32} bg="accent.4" borderRadius={5} />
     </MotionStack>
