@@ -19,13 +19,9 @@ const IndexPage: NextPage = () => {
     images: ['https://source.unsplash.com/random/1280x1024'],
   };
   return (
-    <>
-      <Inspector />
-      <Status />
-      <Scape>
-        <Journey {...props} />
-      </Scape>
-    </>
+    <Scape>
+      <Journey {...props} />
+    </Scape>
   );
 };
 

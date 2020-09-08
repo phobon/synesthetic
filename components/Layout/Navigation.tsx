@@ -35,7 +35,7 @@ const NavButton: React.FunctionComponent<any> = ({ selected, children, ...props 
   <MotionButton
     width={32}
     height={32}
-    bg="grayscale.1"
+    bg="grayscale.2"
     borderRadius={3}
     {...props}>
     {selected && (
@@ -101,8 +101,6 @@ export const Navigation: React.FunctionComponent<NavigationProps & any> = ({ clo
       fullHeight
       as="nav"
       gridArea="nav"
-      borderRight="1px solid"
-      borderColor="grayscale.2"
       p={3}
       space={4}
       bg={bg}
@@ -138,14 +136,14 @@ export const Navigation: React.FunctionComponent<NavigationProps & any> = ({ clo
       exit="exit">
       <Box width={32} height={32} bg="accent.4" borderRadius={5} />
 
-      <Spacer bg="grayscale.1" thickness={2} />
+      <Spacer bg="grayscale.2" thickness={2} />
 
       <AnimateSharedLayout>
         {navItems.map(({ id, type }) => {
           switch (type) {
             case 'spacer':
               return (
-                <Spacer key={id} bg="grayscale.1" thickness={2} />
+                <Spacer key={id} bg="grayscale.2" thickness={2} />
               );
             case 'flex':
               return (
@@ -162,7 +160,7 @@ export const Navigation: React.FunctionComponent<NavigationProps & any> = ({ clo
         })}
       </AnimateSharedLayout>
 
-      <Spacer bg="grayscale.1" thickness={2} />
+      <Spacer bg="grayscale.2" thickness={2} />
 
       <Box width={32} height={32} bg="accent.4" borderRadius={5} />
     </MotionStack>

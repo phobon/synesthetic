@@ -1,7 +1,9 @@
 import React, { Suspense, useRef, useEffect, createContext, useState } from 'react';
 import { Canvas } from 'react-three-fiber';
 import { Html } from 'drei';
-import { Main, Timeline } from '@/components/Layout';
+import { Main } from '@/components/Layout';
+
+import { Timeline } from './Timeline';
 
 interface ScapeProps {
   zoom?: number;
@@ -26,18 +28,14 @@ export const Scape: React.FunctionComponent<ScapeProps> = ({
     <Main
       fullWidth
       fullHeight
-      overflow="hidden"
-      gridTemplateColumns="1fr"
-      gridTemplateRows="1fr auto"
-      gridTemplateAreas="'canvas'
-                         'timeline'">
+      overflow="hidden">
       <Canvas
         orthographic
         camera={{ zoom, position: [0, 0, 500] }}
         colorManagement
         gl={{ alpha: false, antialias: true }}
         onCreated={({ gl, events }) => {
-          gl.setClearColor('#242b32')
+          gl.setClearColor('white')
           gl.toneMappingExposure = 2.5
         }}
         style={canvasStyles}
@@ -49,8 +47,8 @@ export const Scape: React.FunctionComponent<ScapeProps> = ({
         </Suspense>
         {/* {postProcessingEffects.map()} */}
       </Canvas>
-
-      <Timeline fullWidth />
     </Main>
   );
-}
+};
+
+Scape.displayName = 'Scape';

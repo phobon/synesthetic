@@ -6,8 +6,6 @@ export const Timeline: React.FunctionComponent<any> = ({ ...props }) => {
     <Stack
       height="8rem"
       gridArea="timeline"
-      borderTop="1px solid"
-      borderColor="grayscale.2"
       {...props}>
       timeline
     </Stack>

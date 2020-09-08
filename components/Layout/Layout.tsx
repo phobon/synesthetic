@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
 import { Grid } from '@phobon/base';
-
-import { Navigation } from '../Navigation';
+import { Panel } from './Panel';
 
 interface LayoutProps {
 }
 
 export const Layout: React.FunctionComponent<LayoutProps> = ({ children, ...props }) => {
   return (
-    <Grid
-      fullWidth
-      fullHeight
-      gridTemplateRows="1fr 8rem"
-      gridTemplateColumns="8rem minmax(40rem, 20%) 1fr"
-      gridTemplateAreas="'nav inspector main'
-                         'nav status main'"
-      bg="grayscale.0">
-      <Navigation bg="grayscale.0" />
+    <>
       {children}
-    </Grid>
+      <Grid
+        fullWidth
+        fullHeight
+        position="absolute"
+        left={0}
+        top={0}
+        p={5}
+        zIndex={1}
+        gridTemplateRows="1fr"
+        gridTemplateColumns="minmax(45rem, 20%) 1fr"
+        gridTemplateAreas="'panel'">
+        <Panel fullHeight fullWidth gridArea="panel" />
+      </Grid>
+    </>
   );
 };

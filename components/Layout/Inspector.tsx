@@ -24,19 +24,17 @@ const InspectorContainer = styled(motion.aside)<InspectorProps>({
     placeItems: 'center',
     gridTemplateRows: '8rem 1fr',
     gridTemplateColumns: '1fr',
-    borderRight: '1px solid',
   },
   motionStackSystem,
 );
 
 export const Inspector: React.FunctionComponent<InspectorProps & any> = ({ ...props }) => (
   <InspectorContainer
-    borderColor="grayscale.2"
     {...props}>
     <Box fullWidth fullHeight>
 
     </Box>
-    <Box borderTop="1px solid" borderColor="grayscale.2" fullWidth fullHeight>
+    <Box fullWidth fullHeight>
 
     </Box>
   </InspectorContainer>
@@ -45,7 +43,6 @@ export const Inspector: React.FunctionComponent<InspectorProps & any> = ({ ...pr
 Inspector.displayName = 'Inspector';
 
 const defaultProps = {
-  bg: 'grayscale.1',
   color: 'grayscale.9',
 };
 
