@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { Stack } from '@phobon/base';
+import React, { useState } from "react";
+import { Stack } from "@phobon/base";
 
-interface StatusProps {
-}
+interface StatusProps {}
 
 export const Status: React.FunctionComponent<StatusProps> = ({ ...props }) => {
   return (
@@ -15,7 +14,7 @@ export const Status: React.FunctionComponent<StatusProps> = ({ ...props }) => {
       borderTop="1px solid"
       borderRight="1px solid"
       borderColor="grayscale.2"
-      {...props}>
-    </Stack>
+      {...props}
+    ></Stack>
   );
 };

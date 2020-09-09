@@ -1,14 +1,14 @@
-import React, { useRef } from 'react';
-import lerp from 'lerp';
+import React, { useRef } from "react";
+import lerp from "lerp";
 import { ShaderMaterial, Color } from "three";
 import { extend, useFrame } from "react-three-fiber";
-import mergeRefs from 'react-merge-refs'
-import glsl from 'glslify';
+import mergeRefs from "react-merge-refs";
+import glsl from "glslify";
 
-type VerticalLerpMaterialType = JSX.IntrinsicElements['meshStandardMaterial'] & {
-  scale?: number
-  shift?: number
-}
+type VerticalLerpMaterialType = JSX.IntrinsicElements["meshStandardMaterial"] & {
+  scale?: number;
+  shift?: number;
+};
 
 declare global {
   namespace JSX {
@@ -85,62 +85,68 @@ class VerticalLerpMaterialImpl extends ShaderMaterial {
         scale: { value: 0 },
         shift: { value: 0 },
         opacity: { value: 1 },
-        color: { value: new Color("orange") }
-      }
-    })
+        color: { value: new Color("orange") },
+      },
+    });
   }
 
   set scale(value) {
-    this.uniforms.scale.value = value
+    this.uniforms.scale.value = value;
   }
 
   get scale() {
-    return this.uniforms.scale.value
+    return this.uniforms.scale.value;
   }
 
   set shift(value) {
-    this.uniforms.shift.value = value
+    this.uniforms.shift.value = value;
   }
 
   get shift() {
-    return this.uniforms.shift.value
+    return this.uniforms.shift.value;
   }
 
   set map(value) {
-    this.uniforms.hasTexture.value = !!value
-    this.uniforms.tex.value = value
+    this.uniforms.hasTexture.value = !!value;
+    this.uniforms.tex.value = value;
   }
 
   get map() {
-    return this.uniforms.tex.value
+    return this.uniforms.tex.value;
   }
 
   get color() {
-    return this.uniforms.color.value
+    return this.uniforms.color.value;
   }
 
   get opacity() {
-    return this.uniforms.opacity.value
+    return this.uniforms.opacity.value;
   }
 
   set opacity(value) {
-    if (this.uniforms) this.uniforms.opacity.value = value
+    if (this.uniforms) this.uniforms.opacity.value = value;
   }
 }
 
-extend({ VerticalLerpMaterialImpl })
+extend({ VerticalLerpMaterialImpl });
 
-export const VerticalLerpMaterial = React.forwardRef(({ offsetFactor, pages, viewportHeight, top, ...props }: any, ref) => {
-  const materialRef = useRef<VerticalLerpMaterialType>();
-  let last = top.current;
+export const VerticalLerpMaterial = React.forwardRef(
+  ({ offsetFactor, pages, viewportHeight, top, ...props }: any, ref) => {
+    const materialRef = useRef<VerticalLerpMaterialType>();
+    let last = top.current;
 
-  useFrame(() => {
-    materialRef.current.scale = 0; // lerp(materialRef.current.scale, offsetFactor - top.current / ((pages - 1) * viewportHeight), 0.1);
-    materialRef.current.shift = 0; // lerp(materialRef.current.shift, (top.current - last) / 150, 0.1);
-    last = top.current;
-  });
+    useFrame(() => {
+      materialRef.current.scale = 0; // lerp(materialRef.current.scale, offsetFactor - top.current / ((pages - 1) * viewportHeight), 0.1);
+      materialRef.current.shift = 0; // lerp(materialRef.current.shift, (top.current - last) / 150, 0.1);
+      last = top.current;
+    });
 
-  return (
-    <verticalLerpMaterialImpl ref={mergeRefs([ref, materialRef])} attach="material" {...props} />
-  );
-});
+    return (
+      <verticalLerpMaterialImpl
+        ref={mergeRefs([ref, materialRef])}
+        attach="material"
+        {...props}
+      />
+    );
+  }
+);

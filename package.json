@@ -42,6 +42,8 @@
     "@types/styled-system": "latest",
     "babel-loader": "latest",
     "babel-plugin-styled-components": "latest",
+    "jotai": "^0.3.0",
+    "prettier": "^2.1.1",
     "typescript": "latest"
   }
 }

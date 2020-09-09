@@ -1,16 +1,21 @@
-
-import React, { FunctionComponent } from 'react';
-import Head from 'next/head';
+import React, { FunctionComponent } from "react";
+import Head from "next/head";
 
 interface MetaProps {
   title?: string;
   description?: string;
   url: string;
   image?: string;
-  twitterCard: 'summary' | 'summary_card_large';
+  twitterCard: "summary" | "summary_card_large";
 }
 
-const Meta: FunctionComponent<MetaProps> = ({ title, description, url, image, twitterCard }) => {
+const Meta: FunctionComponent<MetaProps> = ({
+  title,
+  description,
+  url,
+  image,
+  twitterCard,
+}) => {
   const metaTitle = title || description;
   return (
     <Head>
@@ -38,11 +43,11 @@ const Meta: FunctionComponent<MetaProps> = ({ title, description, url, image, tw
 };
 
 Meta.defaultProps = {
-  title: 'telesto',
-  url: 'https://github.com/phobon/telesto',
-  image: 'https://github.com/phobon/telesto',
-  description: 'An mdx-powered app template',
-  twitterCard: 'summary',
+  title: "telesto",
+  url: "https://github.com/phobon/telesto",
+  image: "https://github.com/phobon/telesto",
+  description: "An mdx-powered app template",
+  twitterCard: "summary",
 };
 
 export default Meta;

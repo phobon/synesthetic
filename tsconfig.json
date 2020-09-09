@@ -8,6 +8,9 @@
       "@/components": [
         "components/index"
       ],
+      "@/atoms": [
+        "atoms/index"
+      ],
       "@/hooks/*": [
         "hooks/*"
       ],

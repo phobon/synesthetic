@@ -1,8 +1,8 @@
-import React from 'react';
-import { a } from 'react-spring/three';
+import React from "react";
+import { a } from "react-spring/three";
 
-import { PlaneProps } from './Plane';
-import { SandboxMaterial } from '@/materials/SandboxMaterial';
+import { PlaneProps } from "./Plane";
+import { SandboxMaterial } from "@/materials/SandboxMaterial";
 
 export const SandboxPlane: React.FunctionComponent<PlaneProps & any> = ({
   color = "white",

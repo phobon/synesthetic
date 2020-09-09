@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 import { useThree } from "react-three-fiber";
 
-import { ScapeContext } from '@/components/Scape';
+import { ScapeContext } from "@/components/Scape";
 
 export const useBlock = () => {
   const { size, viewport } = useThree();

@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { Grid } from '@phobon/base';
+import React, { useState } from "react";
+import { Grid } from "@phobon/base";
 
-import { Navigation } from '../Navigation';
+import { Navigation } from "../Navigation";
 
-interface LayoutProps {
-}
+interface LayoutProps {}
 
-export const Layout: React.FunctionComponent<LayoutProps> = ({ children, ...props }) => {
+export const Layout: React.FunctionComponent<LayoutProps> = ({
+  children,
+  ...props
+}) => {
   return (
     <Grid
       fullWidth
@@ -15,7 +17,8 @@ export const Layout: React.FunctionComponent<LayoutProps> = ({ children, ...prop
       gridTemplateColumns="8rem minmax(40rem, 20%) 1fr"
       gridTemplateAreas="'nav inspector main'
                          'nav status main'"
-      bg="grayscale.0">
+      bg="grayscale.0"
+    >
       <Navigation bg="grayscale.0" />
       {children}
     </Grid>

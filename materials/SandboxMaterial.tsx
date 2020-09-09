@@ -1,12 +1,11 @@
-import React, { useRef } from 'react';
-import lerp from 'lerp';
+import React, { useRef } from "react";
+import lerp from "lerp";
 import { ShaderMaterial, Color } from "three";
 import { extend, useFrame } from "react-three-fiber";
-import mergeRefs from 'react-merge-refs'
-import glsl from 'glslify';
+import mergeRefs from "react-merge-refs";
+import glsl from "glslify";
 
-type SandboxMaterialType = JSX.IntrinsicElements['meshStandardMaterial'] & {
-}
+type SandboxMaterialType = JSX.IntrinsicElements["meshStandardMaterial"] & {};
 
 declare global {
   namespace JSX {
@@ -38,20 +37,23 @@ class SandboxMaterialImpl extends ShaderMaterial {
     super({
       vertexShader,
       fragmentShader,
-      uniforms: { }
-    })
+      uniforms: {},
+    });
   }
 }
 
-extend({ SandboxMaterialImpl })
+extend({ SandboxMaterialImpl });
 
 export const SandboxMaterial = React.forwardRef(({ ...props }: any, ref) => {
   const materialRef = useRef<SandboxMaterialType>();
 
-  useFrame(() => {
-  });
+  useFrame(() => {});
 
   return (
-    <sandboxMaterialImpl ref={mergeRefs([ref, materialRef])} attach="material" {...props} />
+    <sandboxMaterialImpl
+      ref={mergeRefs([ref, materialRef])}
+      attach="material"
+      {...props}
+    />
   );
 });

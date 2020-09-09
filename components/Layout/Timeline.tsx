@@ -1,5 +1,11 @@
-import React, { Suspense, useRef, useEffect, createContext, useState } from 'react';
-import { Stack } from '@phobon/base';
+import React, {
+  Suspense,
+  useRef,
+  useEffect,
+  createContext,
+  useState,
+} from "react";
+import { Stack } from "@phobon/base";
 
 export const Timeline: React.FunctionComponent<any> = ({ ...props }) => {
   return (
@@ -8,8 +14,9 @@ export const Timeline: React.FunctionComponent<any> = ({ ...props }) => {
       gridArea="timeline"
       borderTop="1px solid"
       borderColor="grayscale.2"
-      {...props}>
+      {...props}
+    >
       timeline
     </Stack>
   );
-}
+};

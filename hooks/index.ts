@@ -1,5 +1,3 @@
-import { useApi } from './useApi';
+import { useApi } from "./useApi";
 
-export {
-  useApi,
-};
+export { useApi };

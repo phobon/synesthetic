@@ -1,6 +1,6 @@
-import React from 'react';
-import { Texture } from 'three';
-import { a } from 'react-spring/three';
+import React from "react";
+import { Texture } from "three";
+import { a } from "react-spring/three";
 
 export interface PlaneProps {
   color?: string;
