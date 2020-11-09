@@ -2,40 +2,18 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": [
-        "components/*"
-      ],
-      "@/components": [
-        "components/index"
-      ],
-      "@/atoms": [
-        "atoms/index"
-      ],
-      "@/hooks/*": [
-        "hooks/*"
-      ],
-      "@/hooks": [
-        "hooks/index"
-      ],
-      "@/api/*": [
-        "pages/api/*"
-      ],
-      "@/api": [
-        "pages/api/index"
-      ],
-      "@/materials": [
-        "materials/index"
-      ],
-      "@/materials/*": [
-        "materials/*"
-      ]
+      "@/components/*": ["components/*"],
+      "@/components": ["components/index"],
+      "@/atoms": ["atoms/index"],
+      "@/hooks/*": ["hooks/*"],
+      "@/hooks": ["hooks/index"],
+      "@/api/*": ["pages/api/*"],
+      "@/api": ["pages/api/index"],
+      "@/materials": ["materials/index"],
+      "@/materials/*": ["materials/*"]
     },
     "target": "es6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -48,12 +26,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

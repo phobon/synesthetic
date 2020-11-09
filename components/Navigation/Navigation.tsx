@@ -1,5 +1,7 @@
+/** @jsx jsx */
+import { jsx } from "@emotion/react";
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import {
   compose,
   space,
@@ -9,9 +11,8 @@ import {
   background,
 } from "styled-system";
 import { Stack, Box } from "@phobon/base";
+import { Spacer } from "@phobon/grimoire";
 import { motion, AnimateSharedLayout } from "framer-motion";
-
-import { Spacer } from "../Spacer";
 
 const MotionStack = motion.custom(Stack);
 const MotionBox = motion.custom(Box);

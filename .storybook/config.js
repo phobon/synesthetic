@@ -1,6 +1,6 @@
 import { addDecorator, configure } from '@storybook/react';
 import { theme, Box } from '@phobon/base';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from '@emotion/react';
 
 addDecorator(story => (
   <ThemeProvider theme={theme}>
