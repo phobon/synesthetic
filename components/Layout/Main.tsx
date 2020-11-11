@@ -19,12 +19,7 @@ import {
 
 import { motion } from "framer-motion";
 
-interface IMainProps {
-  space?: number;
-}
-
-type MainProps = IMainProps &
-  SpaceProps &
+type MainProps = SpaceProps &
   ColorProps &
   LayoutProps &
   GridProps &
@@ -52,7 +47,3 @@ export const Main = styled(motion.main)<MainProps>(
 );
 
 Main.displayName = "Main";
-
-const defaultProps = {};
-
-Main.defaultProps = defaultProps;

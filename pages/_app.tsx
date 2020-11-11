@@ -4,7 +4,6 @@ import { ThemeProvider } from "@emotion/react";
 import { theme } from "@phobon/tokens";
 import { MDXProvider } from "@mdx-js/react";
 import { AnimatePresence } from "framer-motion";
-import { Provider } from "jotai";
 
 import { Layout } from "@/components/Layout";
 
@@ -17,13 +16,11 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <MDXProvider components={components}>
-        <Provider>
-          <Layout>
-            <AnimatePresence exitBeforeEnter>
-              <Component {...pageProps} />
-            </AnimatePresence>
-          </Layout>
-        </Provider>
+        <Layout>
+          <AnimatePresence exitBeforeEnter>
+            <Component {...pageProps} />
+          </AnimatePresence>
+        </Layout>
       </MDXProvider>
     </ThemeProvider>
   );

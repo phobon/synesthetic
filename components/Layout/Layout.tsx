@@ -1,26 +1,52 @@
-import React, { useState } from "react";
-import { Grid } from "@phobon/base";
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx } from "@emotion/core";
+import React from "react";
+import { Box, Grid, GridProps } from "@phobon/base";
 
-import { Navigation } from "../Navigation";
+import { Inspector } from "@/components/Inspector";
+import { Status } from "@/components/Status";
+import { Track } from "@/components/Track";
 
-interface LayoutProps {}
+import { useScapeStore } from "@/store";
 
-export const Layout: React.FunctionComponent<LayoutProps> = ({
-  children,
-  ...props
-}) => {
+export const Layout: React.FunctionComponent<
+  GridProps & React.HTMLAttributes<HTMLDivElement>
+> = ({ children, ...props }) => {
+  const src = useScapeStore((state) => state.src);
+
   return (
-    <Grid
+    <Box
       fullWidth
       fullHeight
-      gridTemplateRows="1fr 8rem"
-      gridTemplateColumns="8rem minmax(40rem, 20%) 1fr"
-      gridTemplateAreas="'nav inspector main'
-                         'nav status main'"
-      bg="grayscale.0"
+      position="relative"
+      bg="transparent"
+      css={{
+        pointerEvents: "none",
+      }}
     >
-      <Navigation bg="grayscale.0" />
       {children}
-    </Grid>
+      <Grid
+        as="section"
+        fullWidth
+        fullHeight
+        position="absolute"
+        gridTemplateRows="8rem 1fr 8rem"
+        gridTemplateColumns="minmax(45rem, 20%) 1fr auto"
+        gridTemplateAreas="'inspector . status'
+                           'inspector . .'
+                           'track track track'"
+        gridGap={5}
+        css={{
+          left: 0,
+          top: 0,
+        }}
+        {...props}
+      >
+        <Inspector pl={5} pt={5} />
+        <Status pt={5} pr={5} />
+        <Track fullWidth src={src} />
+      </Grid>
+    </Box>
   );
 };

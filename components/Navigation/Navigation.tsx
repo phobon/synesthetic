@@ -1,5 +1,6 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
+import { jsx } from "@emotion/core";
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import {

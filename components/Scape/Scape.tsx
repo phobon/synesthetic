@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { Canvas } from "react-three-fiber";
 import { Html } from "drei";
-import { Main, Timeline } from "@/components/Layout";
+import { Main } from "@/components/Layout";
 
 interface ScapeProps {
   zoom?: number;
@@ -29,15 +29,7 @@ export const Scape: React.FunctionComponent<ScapeProps> = ({
   ...props
 }) => {
   return (
-    <Main
-      fullWidth
-      fullHeight
-      overflow="hidden"
-      gridTemplateColumns="1fr"
-      gridTemplateRows="1fr auto"
-      gridTemplateAreas="'canvas'
-                         'timeline'"
-    >
+    <Main fullWidth fullHeight overflow="hidden">
       <Canvas
         orthographic
         camera={{ zoom, position: [0, 0, 500] }}
@@ -57,8 +49,6 @@ export const Scape: React.FunctionComponent<ScapeProps> = ({
         </Suspense>
         {/* {postProcessingEffects.map()} */}
       </Canvas>
-
-      <Timeline fullWidth />
     </Main>
   );
 };

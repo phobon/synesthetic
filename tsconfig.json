@@ -4,7 +4,7 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/components": ["components/index"],
-      "@/atoms": ["atoms/index"],
+      "@/store": ["store/index"],
       "@/hooks/*": ["hooks/*"],
       "@/hooks": ["hooks/index"],
       "@/api/*": ["pages/api/*"],

@@ -11,10 +11,18 @@ import { useTextures } from "@/hooks/useTextures";
 import { useBlock } from "@/hooks/useBlock";
 
 import { VerticalLerpPlane, SandboxPlane } from "@/components/Planes";
+import { useFrame } from "react-three-fiber";
+import { useScapeStore } from "@/store";
 
 export const Journey: React.FunctionComponent<any> = ({ images, ...props }) => {
   const [img] = useTextures(images);
   const { size, contentMaxWidth, aspect } = useBlock();
+
+  const increment = useScapeStore((state) => state.increment);
+
+  useFrame(() => {
+    // increment();
+  });
 
   return (
     <>

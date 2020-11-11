@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
 import { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import dynamic from "next/dynamic";
-import { useAtom } from "jotai";
-
-import { countAtom } from "@/atoms";
-
-import { Inspector, Status } from "@/components/Layout";
 
 const Scape = dynamic(
   () => import("../components/Scape").then((mod) => mod.Scape),
@@ -17,26 +12,14 @@ const Journey = dynamic(
 );
 
 const IndexPage: NextPage = () => {
-  const [count, setCount] = useAtom(countAtom);
-
-  useEffect(() => {
-    setCount(count + 1);
-  }, []);
-
-  console.log(count);
-
   // These props can basically be anything that you want for a particular Scape
   const props = {
     images: ["https://source.unsplash.com/random/1280x1024"],
   };
   return (
-    <>
-      <Inspector />
-      <Status />
-      <Scape>
-        <Journey {...props} />
-      </Scape>
-    </>
+    <Scape>
+      <Journey {...props} />
+    </Scape>
   );
 };
 

@@ -11,13 +11,12 @@
     "@mdx-js/loader": "^1.6.21",
     "@next/mdx": "^10.0.1",
     "@phobon/base": "^3.1.9",
-    "@phobon/grimoire": "^1.1.0",
-    "@phobon/hooks": "^2.2.2",
-    "@phobon/tokens": "^1.1.1",
+    "@phobon/grimoire": "^1.1.4",
+    "@phobon/hooks": "^2.2.5",
+    "@phobon/tokens": "^1.1.2",
     "drei": "^1.5.7",
     "framer-motion": "^2.9.4",
     "glslify": "^7.1.1",
-    "jotai": "^0.10.4",
     "lerp": "^1.0.3",
     "next": "^10.0.1",
     "next-compose-plugins": "^2.2.0",
@@ -28,7 +27,8 @@
     "react-three-fiber": "^4.2.18",
     "styled-system": "^5.1.5",
     "swr": "^0.3.8",
-    "three": "^0.119.1"
+    "three": "^0.119.1",
+    "zustand": "^3.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
