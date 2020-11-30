@@ -4,6 +4,7 @@ import React, {
   useEffect,
   createContext,
   useState,
+  useMemo,
 } from "react";
 import { Html } from "drei";
 
@@ -12,30 +13,45 @@ import { useBlock } from "@/hooks/useBlock";
 
 import { VerticalLerpPlane, SandboxPlane } from "@/components/Planes";
 import { useFrame } from "react-three-fiber";
-import { useScapeStore } from "@/store";
+import { useTimelineStore } from "@/store/useTimelineStore";
+import { NoisePatchMaterial } from "@/materials/NoisePatchMaterial";
 
 export const Journey: React.FunctionComponent<any> = ({ images, ...props }) => {
   const [img] = useTextures(images);
   const { size, contentMaxWidth, aspect } = useBlock();
+  const dataRef = useRef<Uint8Array>(useTimelineStore.getState().data);
+  const materialRef = useRef(null);
 
-  const increment = useScapeStore((state) => state.increment);
+  const isPlaying = useTimelineStore((state) => state.isPlaying);
+
+  useEffect(
+    () =>
+      useTimelineStore.subscribe<Uint8Array>(
+        (data) => (dataRef.current = data),
+        (state) => state.data
+      ),
+    []
+  );
 
   useFrame(() => {
-    // increment();
+    if (isPlaying) {
+      console.log(dataRef.current);
+      materialRef.current.angle = dataRef.current[0] / 100;
+    }
   });
 
   return (
-    <>
-      <group>
-        {/* <SandboxPlane args={[1, 1, 32, 32]} size={size} scale={[contentMaxWidth, contentMaxWidth / aspect, 1]} frustumCulled={false} /> */}
-        <VerticalLerpPlane
+    <group>
+      <mesh {...props} scale={[1, 1, 1]} position={[0, 0, 1]}>
+        <planeBufferGeometry attach="geometry" args={[300, 300, 32, 32]} />
+        <NoisePatchMaterial
+          color={"white"}
           map={img}
-          args={[1, 1, 32, 32]}
-          size={size}
-          scale={[contentMaxWidth, contentMaxWidth / aspect, 1]}
-          frustumCulled={false}
+          hovered={true}
+          ref={materialRef}
+          // angle={angle}
         />
-      </group>
-    </>
+      </mesh>
+    </group>
   );
 };

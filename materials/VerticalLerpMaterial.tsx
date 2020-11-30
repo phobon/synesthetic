@@ -118,14 +118,6 @@ class VerticalLerpMaterialImpl extends ShaderMaterial {
   get color() {
     return this.uniforms.color.value;
   }
-
-  get opacity() {
-    return this.uniforms.opacity.value;
-  }
-
-  set opacity(value) {
-    if (this.uniforms) this.uniforms.opacity.value = value;
-  }
 }
 
 extend({ VerticalLerpMaterialImpl });

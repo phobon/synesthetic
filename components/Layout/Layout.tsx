@@ -6,7 +6,7 @@ import { Box, Grid, GridProps } from "@phobon/base";
 
 import { Inspector } from "@/components/Inspector";
 import { Status } from "@/components/Status";
-import { Track } from "@/components/Track";
+import { Timeline } from "@/components/Timeline";
 
 import { useScapeStore } from "@/store";
 
@@ -35,7 +35,7 @@ export const Layout: React.FunctionComponent<
         gridTemplateColumns="minmax(45rem, 20%) 1fr auto"
         gridTemplateAreas="'inspector . status'
                            'inspector . .'
-                           'track track track'"
+                           'timeline timeline timeline'"
         gridGap={5}
         css={{
           left: 0,
@@ -45,7 +45,7 @@ export const Layout: React.FunctionComponent<
       >
         <Inspector pl={5} pt={5} />
         <Status pt={5} pr={5} />
-        <Track fullWidth src={src} />
+        <Timeline fullWidth src={src} />
       </Grid>
     </Box>
   );

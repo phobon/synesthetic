@@ -26,7 +26,6 @@ export const Inspector: React.FunctionComponent<InspectorProps> = ({
       as="aside"
       fullWidth
       fullHeight
-      bg="background"
       css={{
         display: "grid",
         gridArea: "inspector",

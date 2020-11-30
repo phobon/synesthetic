@@ -1,15 +1,15 @@
 import create, { GetState, SetState } from "zustand";
 
 export type ScapeStore = {
-  scape: number;
+  data?: Uint8Array;
   src?: string;
-  increment: () => void;
+  setData: (data: Uint8Array) => void;
 };
 
 export const useScapeStore = create<ScapeStore>(
   (set: SetState<ScapeStore>, get: GetState<ScapeStore>) => ({
-    scape: 0,
+    data: null,
     src: "track.mp3",
-    increment: () => set((state) => ({ scape: state.scape + 1 })),
+    setData: (data: Uint8Array) => set(() => ({ data })),
   })
 );

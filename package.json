@@ -3,10 +3,10 @@
     "dev": "next -p 3001",
     "build": "next build",
     "start": "next start",
-    "storybook": "start-storybook -p 9000"
+    "storybook": "start-storybook -s ./public -p 9000"
   },
   "dependencies": {
-    "@emotion/react": "^11.0.0",
+    "@emotion/react": "^11.1.1",
     "@emotion/styled": "^11.0.0",
     "@mdx-js/loader": "^1.6.21",
     "@next/mdx": "^10.0.1",
@@ -17,9 +17,11 @@
     "drei": "^1.5.7",
     "framer-motion": "^2.9.4",
     "glslify": "^7.1.1",
+    "glslify-loader": "^2.0.0",
     "lerp": "^1.0.3",
     "next": "^10.0.1",
     "next-compose-plugins": "^2.2.0",
+    "raw-loader": "^4.0.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-merge-refs": "^1.1.0",
@@ -32,11 +34,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
-    "@storybook/addon-a11y": "latest",
-    "@storybook/addon-actions": "latest",
-    "@storybook/addon-knobs": "latest",
-    "@storybook/addons": "latest",
-    "@storybook/react": "latest",
+    "@storybook/addon-a11y": "^5.3.18",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-info": "^5.3.18",
+    "@storybook/addon-knobs": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/preset-typescript": "^3.0.0",
+    "@storybook/react": "^5.3.18",
+    "@storybook/theming": "^5.3.18",
     "@styled-system/should-forward-prop": "^5.1.5",
     "@styled-system/theme-get": "^5.1.2",
     "@types/node": "^14.14.6",
@@ -45,6 +50,8 @@
     "@types/styled-system": "^5.1.10",
     "babel-loader": "^8.1.0",
     "prettier": "^2.1.2",
-    "typescript": "^4.0.5"
+    "ts-loader": "^8.0.11",
+    "typescript": "^4.0.5",
+    "web-audio-beat-detector": "^8.0.33"
   }
 }
