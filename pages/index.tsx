@@ -29,9 +29,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   return {
-//   };
-// };
-
 export default IndexPage;

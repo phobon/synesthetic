@@ -17,8 +17,6 @@ import {
   FullHeightProps,
 } from "@phobon/base";
 
-import { motion } from "framer-motion";
-
 type MainProps = SpaceProps &
   ColorProps &
   LayoutProps &
@@ -26,16 +24,9 @@ type MainProps = SpaceProps &
   FullWidthProps &
   FullHeightProps;
 
-const motionStackSystem = compose(
-  space,
-  color,
-  layout,
-  grid,
-  fullWidth,
-  fullHeight
-);
+const mainSystem = compose(space, color, layout, grid, fullWidth, fullHeight);
 
-export const Main = styled(motion.main)<MainProps>(
+export const Main = styled("main")<MainProps>(
   {
     width: "100%",
     height: "100%",
@@ -43,7 +34,7 @@ export const Main = styled(motion.main)<MainProps>(
     placeItems: "center",
     gridArea: "main",
   },
-  motionStackSystem
+  mainSystem
 );
 
 Main.displayName = "Main";
