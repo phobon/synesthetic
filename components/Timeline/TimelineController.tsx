@@ -3,7 +3,7 @@
 import { jsx } from "@emotion/core";
 import * as React from "react";
 import { useState } from "react";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 
 import { useTimelineStore } from "@/store/useTimelineStore";
 
@@ -23,9 +23,10 @@ export const TimelineController: React.FunctionComponent<ITimelineProps> = ({
   const [data, setLocalData] = useState<Uint8Array>(null);
 
   const isPlaying = useTimelineStore((state) => state.isPlaying);
-  const [setData, setMetaData] = useTimelineStore((state) => [
+  const [setData, setMetaData, setCurrentTime] = useTimelineStore((state) => [
     state.setData,
     state.setMetaData,
+    state.setCurrentTime,
   ]);
 
   useEffect(() => {
@@ -95,14 +96,34 @@ export const TimelineController: React.FunctionComponent<ITimelineProps> = ({
     }
   }, [isPlaying]);
 
-  const onLoadedMetadata = (e) => {
-    console.log("metadata:", e);
-    // e.timeStamp
-  };
+  useEffect(() => {
+    useTimelineStore.subscribe<number>(
+      (seekTime) => {
+        audioRef.current.currentTime = seekTime;
+      },
+      (state) => state.seekTime
+    );
 
-  const onTimeUpdate = (e) => {
-    console.log("timeupdate:", e);
-  };
+    return () => {
+      useTimelineStore.destroy();
+    };
+  }, []);
+
+  const onLoadedMetadata = useCallback(
+    (e: React.SyntheticEvent<HTMLAudioElement, Event>) => {
+      console.log("metadata:", e);
+      // e.timeStamp
+    },
+    []
+  );
+
+  const onTimeUpdate = useCallback(
+    (e: React.SyntheticEvent<HTMLAudioElement, Event>) => {
+      console.log("timeupdate:", e.currentTarget.currentTime);
+      setCurrentTime(Math.floor(e.currentTarget.currentTime));
+    },
+    []
+  );
 
   return (
     <audio

@@ -14,11 +14,15 @@ export type TimelineStore = {
   src?: string;
   data?: Uint8Array;
   isPlaying?: boolean;
+  currentTime?: number;
+  seekTime?: number;
   metaData?: TrackMetadata;
 
   dispatch: (args: TimelineAction) => void;
 
   setData: (data: Uint8Array) => void;
+  setCurrentTime: (time: number) => void;
+  setSeekTime: (seekTime: number) => void;
   setMetaData: (metaData: TrackMetadata) => void;
 };
 
@@ -26,8 +30,13 @@ export const useTimelineStore = create<TimelineStore>(
   (set: SetState<TimelineStore>, get: GetState<TimelineStore>) => ({
     src: "track.mp3",
     isPlaying: false,
+    currentTime: 0,
+    seekTime: 0,
     dispatch: (args: TimelineAction) => set((state) => reducer(state, args)),
     setData: (data: Uint8Array) => set(() => ({ data })),
+    setCurrentTime: (currentTime: number) => set(() => ({ currentTime })),
+    setSeekTime: (seekTime: number) =>
+      set(() => ({ seekTime, currentTime: seekTime })),
     setMetaData: (metaData: TrackMetadata) => set(() => ({ metaData })),
   })
 );

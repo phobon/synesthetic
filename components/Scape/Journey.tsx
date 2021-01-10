@@ -34,8 +34,8 @@ export const Journey: React.FunctionComponent<any> = ({ images, ...props }) => {
   );
 
   useFrame(() => {
-    if (isPlaying) {
-      console.log(dataRef.current);
+    if (isPlaying && dataRef.current) {
+      // console.log(dataRef.current);
       materialRef.current.angle = dataRef.current[0] / 100;
     }
   });
