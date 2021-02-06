@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 import {
   compose,
   space,
@@ -9,32 +9,32 @@ import {
   ColorProps,
   LayoutProps,
   GridProps,
-} from "styled-system";
+} from 'styled-system'
 import {
   fullWidth,
   fullHeight,
   FullWidthProps,
   FullHeightProps,
-} from "@phobon/base";
+} from '@phobon/base'
 
 type MainProps = SpaceProps &
   ColorProps &
   LayoutProps &
   GridProps &
   FullWidthProps &
-  FullHeightProps;
+  FullHeightProps
 
-const mainSystem = compose(space, color, layout, grid, fullWidth, fullHeight);
+const mainSystem = compose(space, color, layout, grid, fullWidth, fullHeight)
 
-export const Main = styled("main")<MainProps>(
+export const Main = styled('main')<MainProps>(
   {
-    width: "100%",
-    height: "100%",
-    display: "grid",
-    placeItems: "center",
-    gridArea: "main",
+    width: '100%',
+    height: '100%',
+    display: 'grid',
+    placeItems: 'center',
+    gridArea: 'main',
   },
   mainSystem
-);
+)
 
-Main.displayName = "Main";
+Main.displayName = 'Main'

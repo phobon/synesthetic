@@ -1,22 +1,22 @@
-import React from "react";
-import { a } from "react-spring/three";
+import React from 'react'
+import { a } from '@react-spring/three'
 
-import { VerticalLerpMaterial } from "@/materials/VerticalLerpMaterial";
+import { VerticalLerpMaterial } from '@/materials/VerticalLerpMaterial'
 
-import { PlaneProps } from "./Plane";
+import { PlaneProps } from './Plane'
 
-export const VerticalLerpPlane: React.FunctionComponent<PlaneProps & any> = ({
-  color = "white",
+export const VerticalLerpPlane = ({
+  color = 'white',
   map,
   args,
   viewportHeight,
   offsetFactor,
   pages,
   ...props
-}) => {
+}: PlaneProps & any) => {
   return (
     <a.mesh {...props}>
-      <planeBufferGeometry attach="geometry" args={[1, 1, 32, 32]} />
+      <planeBufferGeometry attach='geometry' args={[1, 1, 32, 32]} />
       <VerticalLerpMaterial
         top={top}
         viewportHeight={viewportHeight}
@@ -26,5 +26,5 @@ export const VerticalLerpPlane: React.FunctionComponent<PlaneProps & any> = ({
         map={map}
       />
     </a.mesh>
-  );
-};
+  )
+}

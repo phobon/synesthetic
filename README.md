@@ -1,3 +1,3 @@
 # Synesthetic
 
-Giving visual form to auditory impulse and stimulation
+Visual auditory impulse and stimulation

@@ -1,17 +1,17 @@
-import React from "react";
-import { a } from "react-spring/three";
+import React from 'react'
+import { a } from '@react-spring/three'
 
-import { PlaneProps } from "./Plane";
-import { SandboxMaterial } from "@/materials/SandboxMaterial";
+import { PlaneProps } from './Plane'
+import { SandboxMaterial } from '@/materials/SandboxMaterial'
 
-export const SandboxPlane: React.FunctionComponent<PlaneProps & any> = ({
-  color = "white",
+export const SandboxPlane = ({
+  color = 'white',
   map,
   args,
   ...props
-}) => (
+}: PlaneProps & any) => (
   <a.mesh {...props}>
-    <planeBufferGeometry attach="geometry" args={[1, 1, 32, 32]} />
-    <SandboxMaterial attach="material" color={color} map={map} />
+    <planeBufferGeometry attach='geometry' args={[1, 1, 32, 32]} />
+    <SandboxMaterial attach='material' color={color} map={map} />
   </a.mesh>
-);
+)

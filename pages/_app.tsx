@@ -1,29 +1,18 @@
-import React from "react";
-import { AppProps } from "next/app";
-import { ThemeProvider } from "@emotion/react";
-import { theme } from "@phobon/tokens";
-import { MDXProvider } from "@mdx-js/react";
-import { AnimatePresence } from "framer-motion";
+import React from 'react'
+import { AppProps } from 'next/app'
+import { ThemeProvider } from '@emotion/react'
+import { theme } from '@phobon/tokens'
 
-import { Layout } from "@/components/Layout";
-
-const components = {
-  // Map components as required here. Move this to local state to update
-  // at runtime, which may not really be needed
-};
+import { Layout } from '@/components/Layout'
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
-      <MDXProvider components={components}>
-        <Layout>
-          <AnimatePresence exitBeforeEnter>
-            <Component {...pageProps} />
-          </AnimatePresence>
-        </Layout>
-      </MDXProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ThemeProvider>
-  );
+  )
 }
 
-export default App;
+export default App

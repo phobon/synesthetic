@@ -1,2 +1,2 @@
-export * from "./Scape";
-export * from "./Journey";
+export * from './Scape'
+export * from './Journey'
