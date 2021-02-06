@@ -1,7 +1,7 @@
-import React from "react";
-import Document from "next/document";
+import React from 'react'
+import Document from 'next/document'
 
-import { GlobalStyles } from "@/components/GlobalStyles";
+import { GlobalStyles } from '@/components/GlobalStyles'
 
 export default class HighSeasonDocument extends Document {}
 
@@ -28,7 +28,7 @@ HighSeasonDocument.getInitialProps = async (ctx) => {
   // 3. app.render
   // 4. page.render
 
-  const originalRenderPage = ctx.renderPage;
+  const originalRenderPage = ctx.renderPage
 
   try {
     ctx.renderPage = () =>
@@ -39,15 +39,15 @@ HighSeasonDocument.getInitialProps = async (ctx) => {
             <App {...props} />
           </>
         ),
-      });
+      })
 
-    const initialProps = await Document.getInitialProps(ctx);
+    const initialProps = await Document.getInitialProps(ctx)
 
     return {
       ...initialProps,
       styles: [...React.Children.toArray(initialProps.styles)],
-    };
+    }
   } finally {
     // Do something
   }
-};
+}

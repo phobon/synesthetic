@@ -1,1 +1,1 @@
-export * from "./Inspector";
+export * from './Inspector'

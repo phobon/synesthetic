@@ -1,9 +1,9 @@
-import { NextPage, GetStaticProps } from "next";
+import { NextPage, GetStaticProps } from 'next'
 
-import { Main } from "@/components/Layout";
+import { Main } from '@/components/Layout'
 
 interface ScenePageProps {
-  scene: any;
+  scene: any
 }
 
 const ScenePage: NextPage<ScenePageProps> = ({ scene }) => {
@@ -11,17 +11,17 @@ const ScenePage: NextPage<ScenePageProps> = ({ scene }) => {
     <Main>
       <p>{scene.name}</p>
     </Main>
-  );
-};
+  )
+}
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       scene: {
-        name: "This is a scene",
+        name: 'This is a scene',
       },
     },
-  };
-};
+  }
+}
 
-export default ScenePage;
+export default ScenePage

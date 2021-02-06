@@ -1,1 +1,1 @@
-export * from "./NoisePatchMaterial";
+export * from './NoisePatchMaterial'

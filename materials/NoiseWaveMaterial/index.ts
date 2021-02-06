@@ -1,1 +1,1 @@
-export * from "./NoiseWaveMaterial";
+export * from './NoiseWaveMaterial'

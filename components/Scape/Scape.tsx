@@ -27,7 +27,7 @@ export const Scape = ({
   loadingPlaceholder,
   children,
   ...props
-}: ScapeProps) => {
+}: ScapeProps & any) => {
   return (
     <Canvas
       orthographic
