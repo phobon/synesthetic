@@ -8,7 +8,7 @@ import { PlaneProps } from './Plane'
 export const VerticalLerpPlane = ({
   color = 'white',
   map,
-  args,
+  args = [1, 1, 32, 32],
   viewportHeight,
   offsetFactor,
   pages,
@@ -16,7 +16,7 @@ export const VerticalLerpPlane = ({
 }: PlaneProps & any) => {
   return (
     <a.mesh {...props}>
-      <planeBufferGeometry attach='geometry' args={[1, 1, 32, 32]} />
+      <planeGeometry attach='geometry' args={args} />
       <VerticalLerpMaterial
         top={top}
         viewportHeight={viewportHeight}

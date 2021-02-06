@@ -3013,6 +3013,11 @@
   resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.6.tgz#a9ca4b70a18b270ccb2bc0aaafefd1d486b7ea74"
   integrity sha512-W+bw9ds02rAQaMvaLYxAbJ6cvguW/iJXNT6lTssS1ps6QdrMKttqEAMEG/b5CR8TZl3/L7/lH0ZV5nNR1LXikA==
 
+"@types/three@^0.125.0":
+  version "0.125.0"
+  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.125.0.tgz#c0f5b40938b6beab35ea0012454bcb31646923d5"
+  integrity sha512-ZgNfl9jg+/ZkCggh57DJo2/HXKbeDMsNFTiRjb/6wVurVN/l7leqe8vB6au55qDwduXWVS0VVd1hkKVjyBml5A==
+
 "@types/uglify-js@*":
   version "3.11.1"
   resolved "https://registry.yarnpkg.com/@types/uglify-js/-/uglify-js-3.11.1.tgz#97ff30e61a0aa6876c270b5f538737e2d6ab8ceb"

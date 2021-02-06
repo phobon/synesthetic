@@ -7,11 +7,11 @@ import { SandboxMaterial } from '@/materials/SandboxMaterial'
 export const SandboxPlane = ({
   color = 'white',
   map,
-  args,
+  args = [1, 1, 32, 32],
   ...props
 }: PlaneProps & any) => (
   <a.mesh {...props}>
-    <planeBufferGeometry attach='geometry' args={[1, 1, 32, 32]} />
+    <planeGeometry attach='geometry' args={args} />
     <SandboxMaterial attach='material' color={color} map={map} />
   </a.mesh>
 )

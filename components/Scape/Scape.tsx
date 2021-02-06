@@ -5,9 +5,11 @@ import React, {
   createContext,
   useState,
 } from 'react'
-import { Canvas } from 'react-three-fiber'
-import { Html } from '@react-three/drei'
+import { Canvas, useThree } from 'react-three-fiber'
+import { Html, OrbitControls } from '@react-three/drei'
 import { Main } from '@/components/Layout'
+import { EffectComposer } from '@react-three/postprocessing'
+import { Perf } from 'r3f-perf'
 
 interface ScapeProps {
   zoom?: number
@@ -15,14 +17,7 @@ interface ScapeProps {
   loadingPlaceholder?: React.ReactNode
 }
 
-export const ScapeContext = createContext<ScapeProps>({
-  zoom: 0,
-})
-
-const canvasStyles = { width: '100%', height: '100%', gridArea: 'canvas' }
-
 export const Scape = ({
-  zoom = 1,
   postProcessingEffects,
   loadingPlaceholder,
   children,
@@ -30,23 +25,18 @@ export const Scape = ({
 }: ScapeProps & any) => {
   return (
     <Canvas
-      orthographic
-      camera={{ zoom, position: [0, 0, 500] }}
       colorManagement
+      camera={{ position: [0.5, -0.5, 1] }}
       gl={{ alpha: false, antialias: true }}
       onCreated={({ gl, events }) => {
         gl.setClearColor('#242b32')
         gl.toneMappingExposure = 2.5
       }}
-      style={canvasStyles}
       {...props}
     >
-      <Suspense fallback={<Html>{'Loading...'}</Html>}>
-        <ScapeContext.Provider value={{ zoom }}>
-          {children}
-        </ScapeContext.Provider>
-      </Suspense>
-      {/* {postProcessingEffects.map()} */}
+      {/* <Perf openByDefault trackGPU={true} position={'bottom-right'} /> */}
+      <OrbitControls />
+      <Suspense fallback={<Html>{'Loading...'}</Html>}>{children}</Suspense>
     </Canvas>
   )
 }

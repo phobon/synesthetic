@@ -36,6 +36,7 @@ export const Layout = ({
         css={{
           left: 0,
           top: 0,
+          pointerEvents: 'none',
         }}
         {...props}
       >

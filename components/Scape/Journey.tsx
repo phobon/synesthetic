@@ -6,52 +6,44 @@ import React, {
   useState,
   useMemo,
 } from 'react'
-import { Html } from '@react-three/drei'
 
 import { useTextures } from '@/hooks/useTextures'
-import { useBlock } from '@/hooks/useBlock'
 
 import { VerticalLerpPlane, SandboxPlane } from '@/components/Planes'
-import { useFrame } from 'react-three-fiber'
+import { useFrame, useThree } from 'react-three-fiber'
 import { useTimelineStore } from '@/store/useTimelineStore'
 import { NoisePatchMaterial } from '@/materials/NoisePatchMaterial'
+import { WaveMaterial } from '@/materials/WaveMaterial'
 
-export const Journey = ({ images, ...props }: any) => {
+export const Journey = ({ images, args = [1, 1, 32, 32], ...props }: any) => {
   const [img] = useTextures(images)
-  const { size, contentMaxWidth, aspect } = useBlock()
   const dataRef = useRef<Uint8Array>(useTimelineStore.getState().data)
   const materialRef = useRef(null)
-
+  const meshRef = useRef(null)
   const isPlaying = useTimelineStore((state) => state.isPlaying)
 
-  useEffect(
-    () =>
-      useTimelineStore.subscribe<Uint8Array>(
-        (data) => (dataRef.current = data),
-        (state) => state.data
-      ),
-    []
-  )
+  const { camera } = useThree()
+
+  useEffect(() => {
+    camera.lookAt(meshRef.current)
+
+    useTimelineStore.subscribe<Uint8Array>(
+      (data) => (dataRef.current = data),
+      (state) => state.data
+    )
+  }, [])
 
   useFrame(() => {
     if (isPlaying && dataRef.current) {
       // console.log(dataRef.current);
-      materialRef.current.angle = dataRef.current[0] / 100
+      // materialRef.current.angle = dataRef.current[0] / 100
     }
   })
 
   return (
-    <group>
-      <mesh {...props} scale={[1, 1, 1]} position={[0, 0, 1]}>
-        <planeBufferGeometry attach='geometry' args={[300, 300, 32, 32]} />
-        <NoisePatchMaterial
-          color={'white'}
-          map={img}
-          hovered={true}
-          ref={materialRef}
-          // angle={angle}
-        />
-      </mesh>
-    </group>
+    <mesh scale={[1, 1, 1]} position={[0, 0, 0]} ref={meshRef} {...props}>
+      <planeGeometry attach='geometry' args={args} />
+      <WaveMaterial map={img} ref={materialRef} />
+    </mesh>
   )
 }
