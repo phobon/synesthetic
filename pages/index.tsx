@@ -6,7 +6,7 @@ const Scape = dynamic(
   () => import('../components/Scape').then((mod) => mod.Scape),
   { ssr: false }
 )
-const Journey = dynamic(
+const Journey: any = dynamic(
   () => import('../components/Scape/Journey').then((mod) => mod.Journey),
   { ssr: false }
 )
