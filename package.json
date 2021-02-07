@@ -24,7 +24,7 @@
     "lerp": "^1.0.3",
     "next": "^10.0.6",
     "r3f-perf": "^0.79.0",
-    "react": "0.0.0-experimental-4ead6b530",
+    "react": "0.14.0",
     "react-dom": "^17.0.1",
     "react-merge-refs": "^1.1.0",
     "react-spring": "^8.0.27",
