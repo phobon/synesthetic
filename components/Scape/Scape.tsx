@@ -10,6 +10,7 @@ import { Html, OrbitControls } from '@react-three/drei'
 import { Main } from '@/components/Layout'
 import { EffectComposer } from '@react-three/postprocessing'
 import { Perf } from 'r3f-perf'
+import { MaterialEditor, useEditorComposer } from '@three-material-editor/react'
 
 interface ScapeProps {
   zoom?: number
@@ -26,17 +27,19 @@ export const Scape = ({
   return (
     <Canvas
       colorManagement
-      camera={{ position: [0.5, -0.5, 1] }}
+      camera={{ position: [0.5, -0.5, 2] }}
       gl={{ alpha: false, antialias: true }}
       onCreated={({ gl, events }) => {
-        gl.setClearColor('#242b32')
+        gl.setClearColor('#0d1114')
         gl.toneMappingExposure = 2.5
       }}
       {...props}
     >
-      {/* <Perf openByDefault trackGPU={true} position={'bottom-right'} /> */}
+      <Perf openByDefault trackGPU={true} position={'bottom-right'} />
       <OrbitControls />
-      <Suspense fallback={<Html>{'Loading...'}</Html>}>{children}</Suspense>
+      <Suspense fallback={null}>{children}</Suspense>
+      <MaterialEditor />
+      <EffectComposer ref={useEditorComposer()}></EffectComposer>
     </Canvas>
   )
 }

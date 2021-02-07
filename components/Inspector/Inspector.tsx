@@ -32,7 +32,7 @@ export const Inspector = ({ ...props }: InspectorProps) => {
         placeItems: 'start',
         gridTemplateRows: '1fr',
         gridTemplateColumns: '1fr',
-        pointerEvents: 'all',
+        pointerEvents: 'none',
       }}
       {...props}
     >
@@ -48,6 +48,9 @@ export const Inspector = ({ ...props }: InspectorProps) => {
           py={3}
           key='synesthetic__inspector'
           layout
+          css={{
+            pointerEvents: 'all',
+          }}
         >
           <MotionBox
             fullWidth
