@@ -38,8 +38,8 @@ export const Scape = ({
       <Perf openByDefault trackGPU={true} position={'bottom-right'} />
       <OrbitControls />
       <Suspense fallback={null}>{children}</Suspense>
-      <MaterialEditor />
-      <EffectComposer ref={useEditorComposer()}></EffectComposer>
+      {/* <MaterialEditor /> */}
+      {/* <EffectComposer></EffectComposer> */}
     </Canvas>
   )
 }

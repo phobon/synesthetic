@@ -49,5 +49,11 @@ export const SandboxMaterial = React.forwardRef(({ ...props }: any, ref) => {
     }
   })
 
-  return <sandboxMaterialImpl ref={mergeRefs([ref, materialRef])} {...props} />
+  return (
+    <sandboxMaterialImpl
+      ref={mergeRefs([ref, materialRef])}
+      attach='material'
+      {...props}
+    />
+  )
 })

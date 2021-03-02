@@ -13,6 +13,7 @@ import {
   VerticalLerpPlane,
   SandboxPlane,
   AwwwardsPlane,
+  PlaneWavePlane,
 } from '@/components/Planes'
 import { useFrame, useThree } from 'react-three-fiber'
 import { useTimelineStore } from '@/store/useTimelineStore'
@@ -27,10 +28,11 @@ export const Journey = ({ images, args = [1, 1, 32, 32], ...props }: any) => {
   const meshRef = useRef<any>(null)
   const isPlaying = useTimelineStore((state) => state.isPlaying)
 
+  const factorRef = useRef<number>(0)
+
   const { camera } = useThree()
 
   useEffect(() => {
-    console.log(meshRef.current)
     camera.lookAt(meshRef.current)
 
     useTimelineStore.subscribe<Uint8Array>(
@@ -39,18 +41,22 @@ export const Journey = ({ images, args = [1, 1, 32, 32], ...props }: any) => {
     )
   }, [])
 
-  useFrame(() => {
+  useFrame(({ clock }) => {
     if (isPlaying && dataRef.current) {
       // console.log(dataRef.current);
       // materialRef.current.angle = dataRef.current[0] / 100
     }
+
+    // meshRef.current.factor = Math.sin(clock.getElapsedTime()) * 0.001
+    // console.log(meshRef.current.factor)
   })
 
   return (
     <Suspense fallback={null}>
       <group>
-        <AwwwardsPlane position={[0, 0, 0]} ref={meshRef} map={img} />
-        <SandboxPlane position={[1.5, 0, 0]} ref={meshRef} map={img} />
+        <AwwwardsPlane position={[-1.5, 0, 0]} map={img} />
+        <SandboxPlane position={[0, 0, 0]} />
+        <PlaneWavePlane position={[1.5, 0, 0]} ref={meshRef} map={img} />
       </group>
     </Suspense>
   )
