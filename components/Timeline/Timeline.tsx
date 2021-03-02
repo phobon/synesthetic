@@ -8,7 +8,7 @@ import { Box, BoxProps, Grid } from '@phobon/base'
 import { Button } from '@phobon/grimoire'
 import { useTheme } from '@emotion/react'
 
-import { useTimelineStore, TOGGLE_ISPLAYING } from 'src/store/useTimelineStore'
+import { useTimelineStore, TOGGLE_ISPLAYING } from '~store/useTimelineStore'
 
 import { Pause, Play } from '~components/Icons'
 

@@ -5,7 +5,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import { useRef, useEffect, useCallback } from 'react'
 
-import { useTimelineStore } from 'src/store/useTimelineStore'
+import { useTimelineStore } from '~store/useTimelineStore'
 
 export type TimelineControllerProps = {
   src?: string

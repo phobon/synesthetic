@@ -2,18 +2,15 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import { useState } from 'react'
-import { Box, Card, Grid, Text, Button } from '~primitives'
+import { Box, Card, Grid, Text, Button, Stack } from '~primitives'
 import { motion, MotionProps, AnimatePresence } from 'framer-motion'
 
 import { Chevron } from '~components/Icons'
 
-type InspectorProps = GridProps &
-  React.HTMLAttributes<HTMLDivElement> &
-  MotionProps
+import { css } from '~design'
+import { cn } from '~util/cn'
 
-const MotionGrid = motion.custom(Grid)
-const MotionCard = motion.custom(Card)
-const MotionBox = motion.custom(Box)
+type InspectorProps = React.HTMLAttributes<HTMLDivElement> & MotionProps
 
 export const Inspector = ({ ...props }: InspectorProps) => {
   const [inspectorExpanded, setInspectorExpanded] = useState<boolean>(
@@ -21,47 +18,60 @@ export const Inspector = ({ ...props }: InspectorProps) => {
   )
 
   return (
-    <MotionGrid
-      as='aside'
-      fullWidth
-      fullHeight
-      css={{
-        display: 'grid',
-        gridArea: 'inspector',
-        placeItems: 'start',
-        gridTemplateRows: '1fr',
-        gridTemplateColumns: '1fr',
-        pointerEvents: 'none',
-      }}
+    <motion.aside
+      className={cn(
+        `.${Grid}`,
+        css({
+          display: 'grid',
+          gridArea: 'inspector',
+          placeItems: 'start',
+          gridTemplateRows: '1fr',
+          gridTemplateColumns: '1fr',
+          pointerEvents: 'none',
+          width: '100%',
+          height: '100%',
+        })
+      )}
       {...props}
     >
       <AnimatePresence presenceAffectsLayout exitBeforeEnter>
-        <MotionCard
-          pl={4}
-          pr={3}
-          py={3}
+        <motion.section
+          className={cn(
+            `.${Card}`,
+            css({
+              padding: '$3 $3 $3 $4',
+              backgroundColor: '$background',
+              pointerEvents: 'all',
+              width: '100%',
+              borderRadius: '$5',
+            })
+          )}
           key='synesthetic__inspector'
           layout
-          css={{
-            backgroundColor: '$background',
-            pointerEvents: 'all',
-            width: '100%',
-            borderRadius: '$5',
-          }}
         >
-          <MotionBox
+          <motion.div
             layout
             key='synesthetic__inspector__header'
-            css={{
-              width: '100%',
-              justifyContent: 'space-between',
-            }}
+            className={cn(
+              `.${Box}`,
+              css({
+                width: '100%',
+                justifyContent: 'space-between',
+              })
+            )}
           >
             <Stack>
-              <Text as='h1' fontSize={2} lineHeight={1} color='grayscale.3'>
+              <Text
+                as='h1'
+                css={{
+                  fontSize: '$2',
+                  lineHeight: '$tight',
+                  color: '$grey700',
+                }}
+              >
                 Scape
               </Text>
-              <Text fontSize={0}>Some smaller text</Text>
+              <Text css={{ fontSize: '$0' }}>Some smaller text</Text>
             </Stack>
 
             <Button
@@ -72,13 +82,18 @@ export const Inspector = ({ ...props }: InspectorProps) => {
             >
               <Chevron />
             </Button>
-          </MotionBox>
+          </motion.div>
           {inspectorExpanded && (
-            <MotionBox
-              fullWidth
-              flex='1'
+            <motion.div
               key='synesthetic__inspector__container'
               layout
+              className={
+                (cn(`.${Box}`),
+                css({
+                  width: '100%',
+                  flex: '1',
+                }))
+              }
               initial={{
                 opacity: 0,
               }}
@@ -86,11 +101,11 @@ export const Inspector = ({ ...props }: InspectorProps) => {
               exit={{ opacity: 0 }}
             >
               asdf
-            </MotionBox>
+            </motion.div>
           )}
-        </MotionCard>
+        </motion.section>
       </AnimatePresence>
-    </MotionGrid>
+    </motion.aside>
   )
 }
 

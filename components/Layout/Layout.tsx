@@ -9,7 +9,7 @@ import { Status } from '~components/Status'
 import { Timeline } from '~components/Timeline'
 import { Main } from './Main'
 
-import { useScapeStore } from 'src/store'
+import { useScapeStore } from '~store'
 
 export const Layout = ({
   children,
@@ -24,25 +24,25 @@ export const Layout = ({
       {/* UI Layer */}
       <Grid
         as='section'
-        fullWidth
-        fullHeight
-        position='absolute'
-        gridTemplateRows='8rem 1fr 8rem'
-        gridTemplateColumns='minmax(45rem, 20%) 1fr auto'
-        gridTemplateAreas="'inspector . status'
-                           'inspector . .'
-                           'timeline timeline timeline'"
-        gridGap={5}
         css={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+          gridTemplateRows: '8rem 1fr 8rem',
+          gridTemplateColumns: 'minmax(45rem, 20%) 1fr auto',
+          gridTemplateAreas: `'inspector . status'
+                           'inspector . .'
+                           'timeline timeline timeline'`,
+          gridGap: '$5',
           left: 0,
           top: 0,
           pointerEvents: 'none',
         }}
         {...props}
       >
-        <Inspector pl={5} pt={5} />
-        <Status pt={5} pr={5} />
-        <Timeline fullWidth src={src} />
+        <Inspector css={{ paddingLeft: '$5', paddingTop: '$5' }} />
+        <Status css={{ paddingRight: '$5', paddingTop: '$5' }} />
+        <Timeline css={{ width: '100%' }} src={src} />
       </Grid>
     </>
   )

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import Head from 'next/head'
 
 interface MetaProps {
@@ -9,13 +9,7 @@ interface MetaProps {
   twitterCard: 'summary' | 'summary_card_large'
 }
 
-const Meta: FunctionComponent<MetaProps> = ({
-  title,
-  description,
-  url,
-  image,
-  twitterCard,
-}) => {
+const Meta = ({ title, description, url, image, twitterCard }: MetaProps) => {
   const metaTitle = title || description
   return (
     <Head>
