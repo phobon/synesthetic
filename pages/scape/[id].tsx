@@ -1,6 +1,6 @@
 import { NextPage, GetStaticProps } from 'next'
 
-import { Main } from '@/components/Layout'
+import { Main } from '~components/Layout'
 
 interface ScenePageProps {
   scene: any

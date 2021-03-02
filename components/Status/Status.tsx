@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { Stack, StackProps, Text, Card } from '@phobon/base'
 import { Avatar, Popup } from '@phobon/grimoire'
 
-import { SynestheticUser, useUserStore } from '@/store'
+import { SynestheticUser, useUserStore } from 'src/store'
 
 export const Status = ({
   ...props

@@ -7,18 +7,18 @@ import React, {
   useMemo,
 } from 'react'
 
-import { useTextures } from '@/hooks/useTextures'
+import { useTextures } from '~hooks/useTextures'
 
 import {
   VerticalLerpPlane,
   SandboxPlane,
   AwwwardsPlane,
-} from '@/components/Planes'
+} from '~components/Planes'
 import { useFrame, useThree } from 'react-three-fiber'
-import { useTimelineStore } from '@/store/useTimelineStore'
-// import { NoisePatchMaterial } from '@/materials/NoisePatchMaterial'
-// import { WaveMaterial } from '@/materials/WaveMaterial'
-// import { AwwwardsMaterial } from '@/materials/AwwwardsMaterial'
+import { useTimelineStore } from 'src/store/useTimelineStore'
+// import { NoisePatchMaterial } from '~materials/NoisePatchMaterial'
+// import { WaveMaterial } from '~materials/WaveMaterial'
+// import { AwwwardsMaterial } from '~materials/AwwwardsMaterial'
 
 export const Journey = ({ images, args = [1, 1, 32, 32], ...props }: any) => {
   const [img] = useTextures(images)

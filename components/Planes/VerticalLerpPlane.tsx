@@ -1,7 +1,7 @@
 import React from 'react'
 import { a } from '@react-spring/three'
 
-import { VerticalLerpMaterial } from '@/materials/VerticalLerpMaterial'
+import { VerticalLerpMaterial } from '~materials/VerticalLerpMaterial'
 
 import { PlaneProps } from './Plane'
 

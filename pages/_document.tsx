@@ -1,11 +1,12 @@
 import React from 'react'
-import Document from 'next/document'
+import NextDocument from 'next/document'
 
-import { GlobalStyles } from '@/components/GlobalStyles'
+import { getCssString } from '~design'
+import { globalStyles } from '~design/globalStyles'
 
-export default class HighSeasonDocument extends Document {}
+export default class Document extends NextDocument {}
 
-HighSeasonDocument.getInitialProps = async (ctx) => {
+Document.getInitialProps = async (ctx) => {
   // Resolution order
   //
   // On the server:
@@ -31,21 +32,23 @@ HighSeasonDocument.getInitialProps = async (ctx) => {
   const originalRenderPage = ctx.renderPage
 
   try {
+    const stitchesCss = getCssString()
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: (App) => (props) => (
-          <>
-            <GlobalStyles />
-            <App {...props} />
-          </>
-        ),
+        enhanceApp: (App) => (props) => <App {...props} />,
       })
 
-    const initialProps = await Document.getInitialProps(ctx)
+    const initialProps = await NextDocument.getInitialProps(ctx)
 
     return {
       ...initialProps,
-      styles: [...React.Children.toArray(initialProps.styles)],
+      styles: (
+        <>
+          <style>{globalStyles.toString()}</style>
+          <style>{stitchesCss}</style>
+          {initialProps.styles}
+        </>
+      ),
     }
   } finally {
     // Do something

@@ -4,12 +4,12 @@ import { jsx } from '@emotion/core'
 import React from 'react'
 import { Grid, GridProps } from '@phobon/base'
 
-import { Inspector } from '@/components/Inspector'
-import { Status } from '@/components/Status'
-import { Timeline } from '@/components/Timeline'
+import { Inspector } from '~components/Inspector'
+import { Status } from '~components/Status'
+import { Timeline } from '~components/Timeline'
 import { Main } from './Main'
 
-import { useScapeStore } from '@/store'
+import { useScapeStore } from 'src/store'
 
 export const Layout = ({
   children,

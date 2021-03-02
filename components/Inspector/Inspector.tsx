@@ -2,11 +2,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import { useState } from 'react'
-import { Box, Card, Grid, GridProps, Text, Stack } from '@phobon/base'
-import { Button } from '@phobon/grimoire'
+import { Box, Card, Grid, Text, Button } from '~primitives'
 import { motion, MotionProps, AnimatePresence } from 'framer-motion'
 
-import { Chevron } from '@/components/Icons'
+import { Chevron } from '~components/Icons'
 
 type InspectorProps = GridProps &
   React.HTMLAttributes<HTMLDivElement> &
@@ -38,25 +37,25 @@ export const Inspector = ({ ...props }: InspectorProps) => {
     >
       <AnimatePresence presenceAffectsLayout exitBeforeEnter>
         <MotionCard
-          fullWidth
-          borderRadius={5}
-          bg='background'
-          alignItems='center'
-          justifyContent='center'
           pl={4}
           pr={3}
           py={3}
           key='synesthetic__inspector'
           layout
           css={{
+            backgroundColor: '$background',
             pointerEvents: 'all',
+            width: '100%',
+            borderRadius: '$5',
           }}
         >
           <MotionBox
-            fullWidth
-            justifyContent='space-between'
             layout
             key='synesthetic__inspector__header'
+            css={{
+              width: '100%',
+              justifyContent: 'space-between',
+            }}
           >
             <Stack>
               <Text as='h1' fontSize={2} lineHeight={1} color='grayscale.3'>

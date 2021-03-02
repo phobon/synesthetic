@@ -2,7 +2,7 @@ import React from 'react'
 import { a } from '@react-spring/three'
 
 import { PlaneProps } from './Plane'
-import { SandboxMaterial } from '@/materials/SandboxMaterial'
+import { SandboxMaterial } from '~materials/SandboxMaterial'
 
 export const SandboxPlane = ({
   color = 'white',
