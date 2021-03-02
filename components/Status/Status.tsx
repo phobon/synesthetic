@@ -1,37 +1,39 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
 import React, { useState } from 'react'
-import { Stack, StackProps, Text, Card } from '@phobon/base'
-import { Avatar, Popup } from '@phobon/grimoire'
+import { Stack, Text, Card } from '~primitives'
+// import { Avatar, Popup } from '@phobon/grimoire'
 
 import { SynestheticUser, useUserStore } from '~store'
+import { css } from '~design'
 
-export const Status = ({
-  ...props
-}: StackProps & React.HTMLAttributes<HTMLDivElement>) => {
+export const Status = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   const user = useUserStore<SynestheticUser>((state) => state)
 
   return (
     <Stack
       as='section'
-      gridArea='status'
-      fullWidth
-      fullHeight
       css={{
         pointerEvents: 'all',
+        gridArea: 'status',
+        width: '100%',
+        height: '100%',
       }}
       {...props}
     >
-      <Popup
+      {/* <Popup
         trigger={<Avatar name={user.displayName} />}
         variant='clean'
         shape='circle'
       >
-        <Card bg='background' p={2} borderRadius={3}>
+        <Card
+          className={css({
+            backgroundColor: '$backgroundPrimary',
+            padding: '$2',
+            borderRadius: '$3',
+          })}
+        >
           <Text>Test</Text>
         </Card>
-      </Popup>
+      </Popup> */}
     </Stack>
   )
 }

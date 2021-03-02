@@ -1,16 +1,23 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
 import * as React from 'react'
 import { useState } from 'react'
 import { useRef, useEffect, useCallback } from 'react'
 
 import { useTimelineStore } from '~store/useTimelineStore'
 
+import { css } from '~design'
+
 export type TimelineControllerProps = {
   src?: string
   options?: AnalyserOptions
 }
+
+const audioStyles = css({
+  opacity: 0,
+  position: 'absolute',
+  left: -99999,
+  height: 1,
+  width: 1,
+})
 
 export const TimelineController = ({
   src,
@@ -127,13 +134,7 @@ export const TimelineController = ({
 
   return (
     <audio
-      css={{
-        opacity: 0,
-        position: 'absolute',
-        left: -99999,
-        height: 1,
-        width: 1,
-      }}
+      className={audioStyles()}
       src={src}
       ref={audioRef}
       onLoadedMetadata={onLoadedMetadata}

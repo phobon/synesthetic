@@ -32,7 +32,7 @@ export const Journey = ({ images, args = [1, 1, 32, 32], ...props }: any) => {
   const { camera } = useThree()
 
   useEffect(() => {
-    camera.lookAt(meshRef.current)
+    // camera.lookAt(meshRef.current)
 
     useTimelineStore.subscribe<Uint8Array>(
       (data) => (dataRef.current = data),
@@ -55,7 +55,7 @@ export const Journey = ({ images, args = [1, 1, 32, 32], ...props }: any) => {
       <group>
         <AwwwardsPlane position={[-1.5, 0, 0]} map={img} />
         <SandboxPlane position={[0, 0, 0]} />
-        <PlaneWavePlane position={[1.5, 0, 0]} ref={meshRef} map={img} />
+        {/* <PlaneWavePlane position={[1.5, 0, 0]} ref={meshRef} map={img} /> */}
       </group>
     </Suspense>
   )

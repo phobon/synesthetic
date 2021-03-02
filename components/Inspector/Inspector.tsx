@@ -1,14 +1,10 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
 import { useState } from 'react'
-import { Box, Card, Grid, Text, Button, Stack } from '~primitives'
+import { Box, Card, Grid, Text, Button, Stack, Motion } from '~primitives'
 import { motion, MotionProps, AnimatePresence } from 'framer-motion'
 
 import { Chevron } from '~components/Icons'
 
-import { css } from '~design'
-import { cn } from '~util/cn'
+import { styled } from '~design'
 
 type InspectorProps = React.HTMLAttributes<HTMLDivElement> & MotionProps
 
@@ -18,47 +14,42 @@ export const Inspector = ({ ...props }: InspectorProps) => {
   )
 
   return (
-    <motion.aside
-      className={cn(
-        `.${Grid}`,
-        css({
-          display: 'grid',
-          gridArea: 'inspector',
-          placeItems: 'start',
-          gridTemplateRows: '1fr',
-          gridTemplateColumns: '1fr',
-          pointerEvents: 'none',
-          width: '100%',
-          height: '100%',
-        })
-      )}
+    <Motion
+      as='aside'
+      className={Grid.toString()}
+      css={{
+        gridArea: 'inspector',
+        placeItems: 'start',
+        gridTemplateRows: '1fr',
+        gridTemplateColumns: '1fr',
+        pointerEvents: 'none',
+        width: '100%',
+        height: '100%',
+      }}
       {...props}
     >
       <AnimatePresence presenceAffectsLayout exitBeforeEnter>
-        <motion.section
-          className={cn(
-            `.${Card}`,
-            css({
-              padding: '$3 $3 $3 $4',
-              backgroundColor: '$background',
-              pointerEvents: 'all',
-              width: '100%',
-              borderRadius: '$5',
-            })
-          )}
+        <Motion
+          as='section'
+          className={Card.toString()}
+          css={{
+            padding: '$3 $3 $3 $4',
+            backgroundColor: '$background',
+            pointerEvents: 'all',
+            width: '100%',
+            borderRadius: '$5',
+          }}
           key='synesthetic__inspector'
           layout
         >
-          <motion.div
+          <Motion
             layout
             key='synesthetic__inspector__header'
-            className={cn(
-              `.${Box}`,
-              css({
-                width: '100%',
-                justifyContent: 'space-between',
-              })
-            )}
+            className={Box.toString()}
+            css={{
+              width: '100%',
+              justifyContent: 'space-between',
+            }}
           >
             <Stack>
               <Text
@@ -82,18 +73,16 @@ export const Inspector = ({ ...props }: InspectorProps) => {
             >
               <Chevron />
             </Button>
-          </motion.div>
+          </Motion>
           {inspectorExpanded && (
-            <motion.div
+            <Motion
               key='synesthetic__inspector__container'
               layout
-              className={
-                (cn(`.${Box}`),
-                css({
-                  width: '100%',
-                  flex: '1',
-                }))
-              }
+              className={Box.toString()}
+              css={{
+                width: '100%',
+                flex: '1',
+              }}
               initial={{
                 opacity: 0,
               }}
@@ -101,11 +90,11 @@ export const Inspector = ({ ...props }: InspectorProps) => {
               exit={{ opacity: 0 }}
             >
               asdf
-            </motion.div>
+            </Motion>
           )}
-        </motion.section>
+        </Motion>
       </AnimatePresence>
-    </motion.aside>
+    </Motion>
   )
 }
 

@@ -1,8 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
 import React from 'react'
-import { Grid, GridProps } from '@phobon/base'
+import { Grid } from '~primitives'
 
 import { Inspector } from '~components/Inspector'
 import { Status } from '~components/Status'
@@ -10,11 +7,12 @@ import { Timeline } from '~components/Timeline'
 import { Main } from './Main'
 
 import { useScapeStore } from '~store'
+import { css } from '~design'
 
 export const Layout = ({
   children,
   ...props
-}: GridProps & React.HTMLAttributes<HTMLDivElement>) => {
+}: React.HTMLAttributes<HTMLDivElement>) => {
   const src = useScapeStore((state) => state.src)
 
   return (

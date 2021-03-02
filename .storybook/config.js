@@ -1,20 +1,18 @@
-import { addDecorator, configure } from "@storybook/react";
-import { Box } from "@phobon/base";
-import { theme } from "@phobon/tokens";
-import { ThemeProvider } from "@emotion/react";
+import { addDecorator, configure } from '@storybook/react'
+import { Box } from '~primitives'
+import { css } from '~design'
 
 addDecorator((story) => (
-  <ThemeProvider theme={theme}>
-    <Box
-      className="storybox"
-      style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-      justifyContent="flex-start"
-      alignItems="flex-start"
-      fullWidth
-    >
-      {story()}
-    </Box>
-  </ThemeProvider>
-));
+  <Box
+    css={{
+      fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+      width: '100%',
+    }}
+  >
+    {story()}
+  </Box>
+))
 
-configure(require.context("../components", true, /\.stories\.tsx$/), module);
+configure(require.context('../components', true, /\.stories\.tsx$/), module)

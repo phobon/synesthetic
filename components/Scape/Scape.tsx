@@ -10,7 +10,6 @@ import { Html, OrbitControls } from '@react-three/drei'
 import { Main } from '~components/Layout'
 import { EffectComposer } from '@react-three/postprocessing'
 import { Perf } from 'r3f-perf'
-import { MaterialEditor, useEditorComposer } from '@three-material-editor/react'
 
 interface ScapeProps {
   zoom?: number

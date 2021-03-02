@@ -1,68 +1,46 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
 import React, { useState } from 'react'
-import styled from '@emotion/styled'
-import {
-  compose,
-  space,
-  layout,
-  border,
-  color,
-  background,
-} from 'styled-system'
-import { Stack, Box } from '@phobon/base'
-import { Spacer } from '@phobon/grimoire'
+import { styled, css } from '~design'
+import { Box, Spacer, Motion } from '~primitives'
 import { motion, AnimateSharedLayout } from 'framer-motion'
 
-const MotionStack = motion.custom(Stack)
-const MotionBox = motion.custom(Box)
+import { cn } from '~util/cn'
 
-const motionButtonSystem = compose(space, layout, border, color, background)
-const MotionButton = styled(motion.button)(
-  {
-    position: 'relative',
-    cursor: 'pointer',
-    border: 0,
-    transition: 'transform 120ms ease-out, background-color 120ms ease-out',
-    '&:focus': {
-      outline: 0,
-    },
+const MotionButton = styled(motion.button)({
+  position: 'relative',
+  cursor: 'pointer',
+  border: 0,
+  transition: 'transform 120ms ease-out, background-color 120ms ease-out',
+  backgroundColor: '$grey900',
+  borderRadius: '$3',
+  '&:focus': {
+    outline: 0,
   },
-  ({ theme }) => ({
-    '&:hover': {
-      backgroundColor: theme.colors.grayscale[2],
-    },
-  }),
-  motionButtonSystem
-)
+  '&:hover': {
+    backgroundColor: '$grey800',
+  },
+})
 
 const ease = [0.33, 1, 0.68, 1]
 
 export interface NavigationProps {}
 
 const NavButton = ({ selected, children, ...props }: any) => (
-  <MotionButton
-    width={32}
-    height={32}
-    bg='grayscale.1'
-    borderRadius={3}
-    {...props}
-  >
+  <MotionButton width={32} height={32} {...props}>
     {selected && (
-      <MotionBox
+      <Motion
         layoutId='navItem'
+        className={Box.toString()}
         css={{
           pointerEvents: 'none',
+          borderRadius: 'inherit',
+          backgroundColor: '$purple500',
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          left: 0,
+          top: 0,
+          zIndex: 1,
         }}
-        borderRadius='inherit'
-        bg='purples.4'
-        position='absolute'
-        fullWidth
-        fullHeight
-        left={0}
-        top={0}
-        zIndex={1}
       />
     )}
     {children}
@@ -115,24 +93,29 @@ const navItems: NavItem[] = [
 
 export const Navigation = ({
   closeNavigation,
-  bg = 'grayscale.0',
-  color = 'grayscale.9',
+  backgroundColor = '$grey950',
+  color = '$grey100',
   ...props
 }: NavigationProps & any) => {
   const [selected, setSelected] = useState<string>(() => 'one')
 
   return (
-    <MotionStack
-      fullWidth
-      fullHeight
+    <Motion
       as='nav'
-      gridArea='nav'
-      borderRight='1px solid'
-      borderColor='grayscale.2'
-      p={3}
-      space={4}
-      bg={bg}
-      color={color}
+      className={Box.toString()}
+      css={{
+        width: '100%',
+        height: '100%',
+        gridArea: 'nav',
+        borderRight: '1px solid',
+        borderColor: '$grey800',
+        padding: '$3',
+        backgroundColor,
+        color,
+        '> * + *': {
+          marginTop: '$4',
+        },
+      }}
       {...props}
       variants={{
         visible: {
@@ -163,17 +146,29 @@ export const Navigation = ({
       animate='visible'
       exit='exit'
     >
-      <Box width={32} height={32} bg='accent.4' borderRadius={5} />
+      <Box
+        css={{
+          width: 32,
+          height: 32,
+          backgroundColor: '$accent500',
+          borderRadius: '$5',
+        }}
+      />
 
-      <Spacer bg='grayscale.1' thickness={2} />
+      <Spacer css={{ backgroundColor: '$grey900', height: 2 }} />
 
       <AnimateSharedLayout>
         {navItems.map(({ id, type }) => {
           switch (type) {
             case 'spacer':
-              return <Spacer key={id} bg='grayscale.1' thickness={2} />
+              return (
+                <Spacer
+                  key={id}
+                  css={{ backgroundColor: '$grey900', height: 2 }}
+                />
+              )
             case 'flex':
-              return <Box key={id} flex={1} />
+              return <Box key={id} css={{ flex: '1' }} />
             default:
               return (
                 <NavButton
@@ -186,9 +181,16 @@ export const Navigation = ({
         })}
       </AnimateSharedLayout>
 
-      <Spacer bg='grayscale.1' thickness={2} />
+      <Spacer css={{ backgroundColor: '$grey900', height: 2 }} />
 
-      <Box width={32} height={32} bg='accent.4' borderRadius={5} />
-    </MotionStack>
+      <Box
+        css={{
+          width: 32,
+          height: 32,
+          backgroundColor: '$accent500',
+          borderRadius: '$5',
+        }}
+      />
+    </Motion>
   )
 }

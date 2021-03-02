@@ -1,18 +1,14 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
 import * as React from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Box, BoxProps, Grid } from '@phobon/base'
-import { Button } from '@phobon/grimoire'
-import { useTheme } from '@emotion/react'
+import { Box, Grid, Button, Motion } from '~primitives'
 
 import { useTimelineStore, TOGGLE_ISPLAYING } from '~store/useTimelineStore'
 
 import { Pause, Play } from '~components/Icons'
 
 import { TimelineController } from './TimelineController'
+import { css } from '~design'
 
 export interface ITimelineProps {
   src?: string
@@ -20,7 +16,6 @@ export interface ITimelineProps {
 }
 
 export type TimelineProps = ITimelineProps &
-  BoxProps &
   React.HTMLAttributes<HTMLDivElement>
 
 export const Timeline = ({
@@ -44,7 +39,6 @@ export const Timeline = ({
   const seekRef = useRef<number>()
   const trackRef = useRef<HTMLDivElement>()
   const handleRef = useRef<HTMLDivElement>()
-  const theme = useTheme()
 
   useEffect(() => {
     if (!metaData) {
@@ -134,19 +128,17 @@ export const Timeline = ({
 
   return (
     <React.Fragment>
-      <Box height='8rem' gridArea='timeline' {...props}>
+      <Box css={{ gridArea: 'timeline', height: '8rem' }} {...props}>
         <Grid
-          fullHeight
-          width={4 / 5}
-          gridTemplateRows='1fr'
-          gridTemplateColumns='1fr auto'
-          gridGap={3}
           css={{
-            placeItems: 'center',
+            height: '100%',
+            width: 4 / 5,
+            gridTemplateRows: '1fr',
+            gridTemplateColumns: '1fr auto',
             pointerEvents: 'all',
           }}
         >
-          <motion.section
+          <Motion
             ref={trackRef}
             initial='initial'
             whileHover='hover'
@@ -163,7 +155,7 @@ export const Timeline = ({
               cursor: 'pointer',
             }}
           >
-            <motion.div
+            <Motion
               variants={{
                 initial: {
                   height: 2,
@@ -176,7 +168,7 @@ export const Timeline = ({
                 width: '100%',
                 position: 'relative',
                 overflow: 'hidden',
-                borderRadius: 3,
+                borderRadius: '$3',
                 background: 'hsla(0, 0%, 100%, 0.2)',
                 '&::after': {
                   content: "''",
@@ -184,14 +176,14 @@ export const Timeline = ({
                   left: 0,
                   top: 0,
                   height: '100%',
-                  backgroundColor: theme.colors.reds[8],
+                  backgroundColor: '$red200',
                   width: '100%',
                   transform: 'translateX(var(--trackPercentage))',
                   borderRadius: 'inherit',
                 },
               }}
-            ></motion.div>
-            <motion.div
+            ></Motion>
+            <Motion
               ref={handleRef}
               css={{
                 position: 'absolute',
@@ -203,8 +195,8 @@ export const Timeline = ({
                 backgroundColor: 'orange',
                 zIndex: 1,
               }}
-            ></motion.div>
-          </motion.section>
+            ></Motion>
+          </Motion>
 
           <Button
             shape='square'
