@@ -29,23 +29,15 @@ Document.getInitialProps = async (ctx) => {
   // 3. app.render
   // 4. page.render
 
-  const originalRenderPage = ctx.renderPage
-
   try {
-    const stitchesCss = getCssString()
-    ctx.renderPage = () =>
-      originalRenderPage({
-        enhanceApp: (App) => (props) => <App {...props} />,
-      })
-
     const initialProps = await NextDocument.getInitialProps(ctx)
+    globalStyles()
 
     return {
       ...initialProps,
       styles: (
         <>
-          <style>{globalStyles.toString()}</style>
-          <style>{stitchesCss}</style>
+          <style id='__stitchesstyles'>{getCssString()}</style>
           {initialProps.styles}
         </>
       ),

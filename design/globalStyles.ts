@@ -9,8 +9,7 @@ export const globalStyles = globalCss({
     fontSize: 8,
   },
   body: {
-    fontFamily:
-      "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+    fontFamily: '$default',
     fontSize: 14,
     fontStyle: 'normal',
     fontWeight: 400,
@@ -28,8 +27,7 @@ export const globalStyles = globalCss({
     listStyleType: 'none',
   },
   'code, kbd': {
-    fontFamily:
-      "'SF Mono', 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Mono', Menlo, Courier, monospace",
+    fontFamily: '$monospace',
   },
   template: {
     display: 'none',

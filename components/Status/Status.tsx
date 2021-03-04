@@ -5,7 +5,9 @@ import { Stack, Text, Card } from '~primitives'
 import { SynestheticUser, useUserStore } from '~store'
 import { css } from '~design'
 
-export const Status = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+export type StatusProps = React.ComponentProps<typeof Stack>
+
+export const Status = ({ ...props }: StatusProps) => {
   const user = useUserStore<SynestheticUser>((state) => state)
 
   return (
@@ -26,7 +28,7 @@ export const Status = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => {
       >
         <Card
           className={css({
-            backgroundColor: '$backgroundPrimary',
+            backgroundColor: '$background',
             padding: '$2',
             borderRadius: '$3',
           })}

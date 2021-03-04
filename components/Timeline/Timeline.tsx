@@ -16,7 +16,8 @@ export interface ITimelineProps {
 }
 
 export type TimelineProps = ITimelineProps &
-  React.HTMLAttributes<HTMLDivElement>
+  React.HTMLAttributes<HTMLDivElement> &
+  React.ComponentProps<typeof Box>
 
 export const Timeline = ({
   src,

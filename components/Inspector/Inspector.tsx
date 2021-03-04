@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { Box, Card, Grid, Text, Button, Stack, Motion } from '~primitives'
-import { motion, MotionProps, AnimatePresence } from 'framer-motion'
+import { MotionProps, AnimatePresence } from 'framer-motion'
 
 import { Chevron } from '~components/Icons'
 
-import { styled } from '~design'
-
-type InspectorProps = React.HTMLAttributes<HTMLDivElement> & MotionProps
+type InspectorProps = React.HTMLAttributes<HTMLDivElement> &
+  MotionProps &
+  React.ComponentProps<typeof Motion>
 
 export const Inspector = ({ ...props }: InspectorProps) => {
   const [inspectorExpanded, setInspectorExpanded] = useState<boolean>(
@@ -16,7 +16,7 @@ export const Inspector = ({ ...props }: InspectorProps) => {
   return (
     <Motion
       as='aside'
-      className={Grid.toString()}
+      className={Grid.className}
       css={{
         gridArea: 'inspector',
         placeItems: 'start',
@@ -31,7 +31,7 @@ export const Inspector = ({ ...props }: InspectorProps) => {
       <AnimatePresence presenceAffectsLayout exitBeforeEnter>
         <Motion
           as='section'
-          className={Card.toString()}
+          className={Card.className}
           css={{
             padding: '$3 $3 $3 $4',
             backgroundColor: '$background',
@@ -45,7 +45,7 @@ export const Inspector = ({ ...props }: InspectorProps) => {
           <Motion
             layout
             key='synesthetic__inspector__header'
-            className={Box.toString()}
+            className={Box.className}
             css={{
               width: '100%',
               justifyContent: 'space-between',
@@ -57,7 +57,7 @@ export const Inspector = ({ ...props }: InspectorProps) => {
                 css={{
                   fontSize: '$2',
                   lineHeight: '$tight',
-                  color: '$grey700',
+                  color: '$grey900',
                 }}
               >
                 Scape
@@ -69,7 +69,7 @@ export const Inspector = ({ ...props }: InspectorProps) => {
               onClick={() => setInspectorExpanded((previous) => !previous)}
               shape='square'
               variant='tertiary'
-              size='m'
+              size='medium'
             >
               <Chevron />
             </Button>
@@ -78,7 +78,7 @@ export const Inspector = ({ ...props }: InspectorProps) => {
             <Motion
               key='synesthetic__inspector__container'
               layout
-              className={Box.toString()}
+              className={Box.className}
               css={{
                 width: '100%',
                 flex: '1',

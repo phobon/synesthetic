@@ -8,7 +8,7 @@
     "lint": "yarn prettier && yarn eslint",
     "eslint": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}' --ext jsconfig.json",
     "prettier": "prettier --list-different '**/*.{js,jsx,md,ts,tsx}'",
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
     "export": "EXPORT=true next build && EXPORT=true next export",
