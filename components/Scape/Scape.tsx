@@ -53,7 +53,14 @@ export const Scape = ({ images, args = [1, 1, 32, 32], ...props }: any) => {
   return (
     <Suspense fallback={null}>
       <group>
-        <AwwwardsPlane position={[0, 0, 0]} map={img} amplitude={50} />
+        <AwwwardsPlane
+          position={[0, 0, 0]}
+          map={img}
+          amplitude={50}
+          frequency={2}
+          coefficient={0.1}
+          timeScale={0.5}
+        />
         {/* <SandboxPlane position={[0, 0, 0]} /> */}
         {/* <PlaneWavePlane position={[1.5, 0, 0]} ref={meshRef} map={img} /> */}
       </group>
