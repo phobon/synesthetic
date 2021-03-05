@@ -13,7 +13,7 @@ const Canvas: any = dynamic(
 
 const IndexPage: NextPage = () => {
   // These props can basically be anything that you want for a particular Scape
-  const props = {
+  const props: any = {
     images: ['https://source.unsplash.com/random/1280x1024'],
   }
   return (

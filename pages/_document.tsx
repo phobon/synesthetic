@@ -8,7 +8,7 @@ export default class Document extends NextDocument {
       <Html lang='en'>
         <Head>
           <style
-            id='stitches'
+            id='__stitches'
             dangerouslySetInnerHTML={{ __html: getCssString() }}
           />
         </Head>

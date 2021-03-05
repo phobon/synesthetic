@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
-import { VStack, Text, Card } from '~primitives'
-// import { Avatar, Popup } from '@phobon/grimoire'
+import { Leva } from 'leva'
 
+import { Box, Text, Card } from '~primitives'
 import { SynestheticUser, useUserStore } from '~store'
 import { css } from '~design'
 
-export type StatusProps = React.ComponentProps<typeof VStack>
+export type StatusProps = React.ComponentProps<typeof Box>
 
 export const Status = ({ ...props }: StatusProps) => {
   const user = useUserStore<SynestheticUser>((state) => state)
 
   return (
-    <VStack
+    <Box
       as='section'
       css={{
         pointerEvents: 'all',
@@ -24,22 +24,13 @@ export const Status = ({ ...props }: StatusProps) => {
       }}
       {...props}
     >
-      asdf
-      {/* <Popup
-        trigger={<Avatar name={user.displayName} />}
-        variant='clean'
-        shape='circle'
-      >
-        <Card
-          className={css({
-            backgroundColor: '$background',
-            padding: '$2',
-            borderRadius: '$3',
-          })}
-        >
-          <Text>Test</Text>
-        </Card>
-      </Popup> */}
-    </VStack>
+      <Leva
+        // detached         // default = true,  false would make the pane fill the parent dom node it's rendered in.
+        // oneLineLabels    // default = false, alternative layout for labels, with labels and fields on separate rows
+        hideTitleBar // default = false, hides the GUI header
+        // collapsed        // default = false, when true the GUI is collpased
+        // hidden           // default = false, when true the GUI is hidden
+      />
+    </Box>
   )
 }

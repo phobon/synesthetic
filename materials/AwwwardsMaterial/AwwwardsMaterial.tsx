@@ -3,6 +3,7 @@ import { ShaderMaterial } from 'three'
 import { extend, useFrame } from 'react-three-fiber'
 import mergeRefs from 'react-merge-refs'
 import lerp from 'lerp'
+import { useControls } from 'leva'
 
 import vertexShader from './vertex.glsl'
 import fragmentShader from './fragment.glsl'
@@ -85,8 +86,14 @@ class AwwwardsMaterialImpl extends ShaderMaterial {
 
 extend({ AwwwardsMaterialImpl })
 
-export const AwwwardsMaterial = React.forwardRef(
-  ({ hovered, ...props }: any, ref) => {
+export const AwwwardsMaterial = React.forwardRef<
+  any,
+  AwwwardsMaterialType & any
+>(
+  (
+    { hovered, timeScale, amplitude, frequency, coefficient, ...props },
+    ref
+  ) => {
     const materialRef = useRef<AwwwardsMaterialType>()
     useFrame(({ clock }) => {
       if (materialRef.current) {
@@ -94,10 +101,26 @@ export const AwwwardsMaterial = React.forwardRef(
       }
     })
 
+    const {
+      timeScale: _timescale,
+      amplitude: _amplitude,
+      frequency: _frequency,
+      coefficient: _coefficient,
+    } = useControls({
+      timeScale,
+      amplitude,
+      frequency,
+      coefficient,
+    })
+
     return (
       <awwwardsMaterialImpl
         ref={mergeRefs([ref, materialRef])}
         attach='material'
+        timeScale={_timescale}
+        amplitude={_amplitude}
+        frequency={_frequency}
+        coefficient={_coefficient}
         {...props}
       />
     )
