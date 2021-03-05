@@ -11,9 +11,9 @@ export const Button = styled('button', {
   userSelect: 'none',
 
   $$buttonSize: '$space$5',
-  $$buttonBorder: '$colors$grey100',
+  $$buttonBorder: '$colors$grey300',
   $$buttonBorderRadius: '6px',
-  $$buttonBg: 'transparent',
+  $$buttonBg: '$colors$grey300',
   $$buttonColor: '$colors$grey900',
   $$buttonPadding: '$space$2',
 
@@ -28,7 +28,8 @@ export const Button = styled('button', {
   stroke: '$$buttonColor',
 
   '&:hover': {
-    $$buttonBorder: '$colors$grey400',
+    $$buttonBorder: '$colors$grey200',
+    $$buttonBg: '$colors$grey200',
   },
 
   '&[aria-pressed="true"]': {
@@ -71,8 +72,8 @@ export const Button = styled('button', {
         $$buttonColor: '$colors$grey900',
         $$buttonBorder: 'transparent',
         '&:hover': {
-          $$buttonBg: 'inherit',
-          $$buttonBorder: '$colors$grey400',
+          $$buttonBg: '$colors$grey200',
+          $$buttonBorder: '$colors$grey200',
         },
         '&[aria-pressed="true"]': {
           $$buttonBg: '$colors$grey800',
