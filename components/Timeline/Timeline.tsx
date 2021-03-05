@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Box, Grid, Button, Motion } from '~primitives'
+import { Box, Grid, Button } from '~primitives'
 
 import { useTimelineStore, TOGGLE_ISPLAYING } from '~store/useTimelineStore'
 
@@ -129,7 +129,10 @@ export const Timeline = ({
 
   return (
     <React.Fragment>
-      <Box css={{ gridArea: 'timeline', height: '8rem' }} {...props}>
+      <Box
+        css={{ gridArea: 'timeline', height: '8rem', width: '100%' }}
+        {...props}
+      >
         <Grid
           css={{
             height: '100%',
@@ -139,7 +142,7 @@ export const Timeline = ({
             pointerEvents: 'all',
           }}
         >
-          <Motion
+          <motion.div
             ref={trackRef}
             initial='initial'
             whileHover='hover'
@@ -147,16 +150,16 @@ export const Timeline = ({
               initial: null,
               hover: null,
             }}
-            css={{
+            className={css({
               width: '100%',
               height: 16,
               position: 'relative',
               display: 'flex',
               alignItems: 'center',
               cursor: 'pointer',
-            }}
+            })()}
           >
-            <Motion
+            <motion.div
               variants={{
                 initial: {
                   height: 2,
@@ -165,7 +168,7 @@ export const Timeline = ({
                   height: 6,
                 },
               }}
-              css={{
+              className={css({
                 width: '100%',
                 position: 'relative',
                 overflow: 'hidden',
@@ -182,11 +185,11 @@ export const Timeline = ({
                   transform: 'translateX(var(--trackPercentage))',
                   borderRadius: 'inherit',
                 },
-              }}
-            ></Motion>
-            <Motion
+              })()}
+            ></motion.div>
+            <motion.div
               ref={handleRef}
-              css={{
+              className={css({
                 position: 'absolute',
                 top: '50%',
                 height: 8,
@@ -195,13 +198,13 @@ export const Timeline = ({
                 transform: 'translateY(-50%)',
                 backgroundColor: 'orange',
                 zIndex: 1,
-              }}
-            ></Motion>
-          </Motion>
+              })()}
+            ></motion.div>
+          </motion.div>
 
           <Button
             shape='square'
-            size='s'
+            size='small'
             onClick={() => dispatch({ type: TOGGLE_ISPLAYING })}
           >
             {isPlaying && <Pause fill='inherit' />}

@@ -73,7 +73,7 @@ const stitchesConfig = createCss({
 
       // Theme-specific
       foreground: '$grey950',
-      background: '$fff',
+      background: '#fff',
 
       // Guidance palettes
       successHigh: '$green900',

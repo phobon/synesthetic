@@ -1,6 +1,6 @@
 import { styled } from '~design'
 
-export const Stack = styled('div', {
+const sharedStyles: any = {
   $$space: '$space$0',
   display: 'flex',
   flex: 'none',
@@ -9,14 +9,28 @@ export const Stack = styled('div', {
   boxSizing: 'border-box',
   minWidth: 0,
   color: '$foreground',
-  '> * + *': {
-    marginTop: '$$space',
-  },
   variants: {
     space: {
       0: { $$space: '$space$0' },
     },
   },
+}
+
+export const VStack = styled('div', {
+  ...sharedStyles,
+  flexDirection: 'column',
+  '> * + *': {
+    marginTop: '$$space',
+  },
 })
 
-Stack.displayName = 'Stack'
+VStack.displayName = 'VStack'
+
+export const HStack = styled('div', {
+  ...sharedStyles,
+  '> * + *': {
+    marginLeft: '$$space',
+  },
+})
+
+HStack.displayName = 'HStack'

@@ -6,8 +6,8 @@ const Scape = dynamic(
   () => import('../components/Scape').then((mod) => mod.Scape),
   { ssr: false }
 )
-const Journey: any = dynamic(
-  () => import('../components/Scape/Journey').then((mod) => mod.Journey),
+const Canvas: any = dynamic(
+  () => import('../components/Canvas').then((mod) => mod.Canvas),
   { ssr: false }
 )
 
@@ -17,9 +17,9 @@ const IndexPage: NextPage = () => {
     images: ['https://source.unsplash.com/random/1280x1024'],
   }
   return (
-    <Scape>
-      <Journey {...props} />
-    </Scape>
+    <Canvas>
+      <Scape {...props} />
+    </Canvas>
   )
 }
 

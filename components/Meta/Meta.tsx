@@ -9,7 +9,13 @@ interface MetaProps {
   twitterCard: 'summary' | 'summary_card_large'
 }
 
-const Meta = ({ title, description, url, image, twitterCard }: MetaProps) => {
+export const Meta = ({
+  title = 'synesthetic',
+  description = 'https://github.com/phobon/synesthetic',
+  url = 'https://github.com/phobon/synesthetic',
+  image = 'Visual auditory impulse and stimulation',
+  twitterCard = 'summary',
+}: MetaProps) => {
   const metaTitle = title || description
   return (
     <Head>
@@ -35,13 +41,3 @@ const Meta = ({ title, description, url, image, twitterCard }: MetaProps) => {
     </Head>
   )
 }
-
-Meta.defaultProps = {
-  title: 'synesthetic',
-  url: 'https://github.com/phobon/synesthetic',
-  image: 'https://github.com/phobon/synesthetic',
-  description: 'Visual auditory impulse and stimulation',
-  twitterCard: 'summary',
-}
-
-export default Meta

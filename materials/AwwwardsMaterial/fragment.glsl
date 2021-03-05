@@ -5,7 +5,7 @@ varying float vElevation;
 
 void main() {
   vec4 cga = texture2D(uTexture, vUv);
-  vec4 final = mix(cga, vec4(0.0), 0.5 - vElevation);
+  vec4 final = mix(cga, vec4(0.0), vElevation);
 
-  gl_FragColor = vec4(final);
+  gl_FragColor = vec4(vElevation, 0.0, 0.0, 1.0);
 }

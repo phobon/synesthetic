@@ -8,7 +8,7 @@ import { PlaneProps } from './Plane'
 export const VerticalLerpPlane = ({
   color = 'white',
   map,
-  args = [1, 1, 32, 32],
+  args = [1000, 1000, 32, 32],
   viewportHeight,
   offsetFactor,
   pages,

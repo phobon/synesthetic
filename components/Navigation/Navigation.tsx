@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { styled, css } from '~design'
-import { Box, Spacer, Motion } from '~primitives'
+import { Box, Spacer } from '~primitives'
 import { motion, AnimateSharedLayout } from 'framer-motion'
 
-import { cn } from '~util/cn'
+import { cn } from 'utils/cn'
 
-const MotionButton = styled(motion.button)({
+const MotionButton = styled(motion.button, {
   position: 'relative',
   cursor: 'pointer',
   border: 0,
@@ -27,20 +27,22 @@ export interface NavigationProps {}
 const NavButton = ({ selected, children, ...props }: any) => (
   <MotionButton width={32} height={32} {...props}>
     {selected && (
-      <Motion
+      <motion.div
         layoutId='navItem'
-        className={Box.toString()}
-        css={{
-          pointerEvents: 'none',
-          borderRadius: 'inherit',
-          backgroundColor: '$purple500',
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          left: 0,
-          top: 0,
-          zIndex: 1,
-        }}
+        className={cn(
+          Box.className,
+          css({
+            pointerEvents: 'none',
+            borderRadius: 'inherit',
+            backgroundColor: '$purple500',
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            left: 0,
+            top: 0,
+            zIndex: 1,
+          })()
+        )}
       />
     )}
     {children}
@@ -100,22 +102,23 @@ export const Navigation = ({
   const [selected, setSelected] = useState<string>(() => 'one')
 
   return (
-    <Motion
-      as='nav'
-      className={Box.toString()}
-      css={{
-        width: '100%',
-        height: '100%',
-        gridArea: 'nav',
-        borderRight: '1px solid',
-        borderColor: '$grey800',
-        padding: '$3',
-        backgroundColor,
-        color,
-        '> * + *': {
-          marginTop: '$4',
-        },
-      }}
+    <motion.nav
+      className={cn(
+        Box.className,
+        css({
+          width: '100%',
+          height: '100%',
+          gridArea: 'nav',
+          borderRight: '1px solid',
+          borderColor: '$grey800',
+          padding: '$3',
+          backgroundColor,
+          color,
+          '> * + *': {
+            marginTop: '$4',
+          },
+        })()
+      )}
       {...props}
       variants={{
         visible: {
@@ -191,6 +194,6 @@ export const Navigation = ({
           borderRadius: '$5',
         }}
       />
-    </Motion>
+    </motion.nav>
   )
 }

@@ -4,7 +4,7 @@
     "paths": {
       "~design/*": ["design/*"],
       "~design": ["design/index"],
-      "~util/*": ["util/*"],
+      "~utils/*": ["utils/*"],
       "~primitives/*": ["components/primitives/*"],
       "~primitives": ["components/primitives/index"],
       "~components/*": ["components/*"],

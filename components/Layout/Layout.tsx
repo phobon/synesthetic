@@ -7,7 +7,6 @@ import { Timeline } from '~components/Timeline'
 import { Main } from './Main'
 
 import { useScapeStore } from '~store'
-import { css } from '~design'
 
 export const Layout = ({
   children,
@@ -28,9 +27,9 @@ export const Layout = ({
           position: 'absolute',
           gridTemplateRows: '8rem 1fr 8rem',
           gridTemplateColumns: 'minmax(45rem, 20%) 1fr auto',
-          gridTemplateAreas: `'inspector . status'
-                           'inspector . .'
-                           'timeline timeline timeline'`,
+          gridTemplateAreas: `"inspector . status"
+                              "inspector . ."
+                              "timeline timeline timeline"`,
           gridGap: '$5',
           left: 0,
           top: 0,
@@ -38,9 +37,9 @@ export const Layout = ({
         }}
         {...props}
       >
-        <Inspector css={{ paddingLeft: '$5', paddingTop: '$5' }} />
-        <Status css={{ paddingRight: '$5', paddingTop: '$5' }} />
-        <Timeline css={{ width: '100%' }} src={src} />
+        <Inspector />
+        <Status />
+        <Timeline src={src} />
       </Grid>
     </>
   )

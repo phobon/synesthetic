@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import { Box, Card, Grid, Text, Button, Stack, Motion } from '~primitives'
-import { MotionProps, AnimatePresence } from 'framer-motion'
+import { Box, Card, Text, Button, VStack } from '~primitives'
+import { motion, MotionProps, AnimatePresence } from 'framer-motion'
 
 import { Chevron } from '~components/Icons'
 
-type InspectorProps = React.HTMLAttributes<HTMLDivElement> &
-  MotionProps &
-  React.ComponentProps<typeof Motion>
+import { css } from '~design'
+import { cn } from '~utils/cn'
+
+type InspectorProps = React.HTMLAttributes<HTMLDivElement> & MotionProps
 
 export const Inspector = ({ ...props }: InspectorProps) => {
   const [inspectorExpanded, setInspectorExpanded] = useState<boolean>(
@@ -14,56 +15,66 @@ export const Inspector = ({ ...props }: InspectorProps) => {
   )
 
   return (
-    <Motion
-      as='aside'
-      className={Grid.className}
-      css={{
-        gridArea: 'inspector',
-        placeItems: 'start',
-        gridTemplateRows: '1fr',
-        gridTemplateColumns: '1fr',
-        pointerEvents: 'none',
-        width: '100%',
-        height: '100%',
-      }}
+    <motion.aside
+      className={cn(
+        Box.className,
+        css({
+          gridArea: 'inspector',
+          placeItems: 'start',
+          gridTemplateRows: '1fr',
+          gridTemplateColumns: '1fr',
+          pointerEvents: 'none',
+          width: '100%',
+          height: '100%',
+          padding: '$3',
+        })()
+      )}
       {...props}
     >
       <AnimatePresence presenceAffectsLayout exitBeforeEnter>
-        <Motion
-          as='section'
-          className={Card.className}
-          css={{
-            padding: '$3 $3 $3 $4',
-            backgroundColor: '$background',
-            pointerEvents: 'all',
-            width: '100%',
-            borderRadius: '$5',
-          }}
+        <motion.section
+          className={cn(
+            Card.className,
+            VStack.className,
+            css({
+              padding: '$3 $3 $3 $4',
+              pointerEvents: 'all',
+              width: '100%',
+              borderRadius: '$4',
+              backgroundColor: '$background',
+            })()
+          )}
           key='synesthetic__inspector'
           layout
         >
-          <Motion
+          <motion.div
             layout
             key='synesthetic__inspector__header'
-            className={Box.className}
-            css={{
-              width: '100%',
-              justifyContent: 'space-between',
-            }}
+            className={cn(
+              Box.className,
+              css({
+                width: '100%',
+                justifyContent: 'space-between',
+              })()
+            )}
           >
-            <Stack>
+            <VStack
+              css={{
+                alignItems: 'flex-start',
+              }}
+            >
               <Text
                 as='h1'
                 css={{
-                  fontSize: '$2',
+                  fontSize: '$3',
                   lineHeight: '$tight',
                   color: '$grey900',
                 }}
               >
                 Scape
               </Text>
-              <Text css={{ fontSize: '$0' }}>Some smaller text</Text>
-            </Stack>
+              <Text css={{ fontSize: '$1' }}>Some smaller text</Text>
+            </VStack>
 
             <Button
               onClick={() => setInspectorExpanded((previous) => !previous)}
@@ -73,16 +84,18 @@ export const Inspector = ({ ...props }: InspectorProps) => {
             >
               <Chevron />
             </Button>
-          </Motion>
+          </motion.div>
           {inspectorExpanded && (
-            <Motion
+            <motion.div
               key='synesthetic__inspector__container'
               layout
-              className={Box.className}
-              css={{
-                width: '100%',
-                flex: '1',
-              }}
+              className={cn(
+                Box.className,
+                css({
+                  width: '100%',
+                  flex: '1,',
+                })()
+              )}
               initial={{
                 opacity: 0,
               }}
@@ -90,11 +103,11 @@ export const Inspector = ({ ...props }: InspectorProps) => {
               exit={{ opacity: 0 }}
             >
               asdf
-            </Motion>
+            </motion.div>
           )}
-        </Motion>
+        </motion.section>
       </AnimatePresence>
-    </Motion>
+    </motion.aside>
   )
 }
 
