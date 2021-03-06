@@ -1,6 +1,6 @@
 import { StitchesCss, createCss } from '@stitches/react'
 
-const stitchesConfig = createCss({
+export const config = createCss({
   prefix: '',
   theme: {
     colors: {
@@ -60,6 +60,17 @@ const stitchesConfig = createCss({
       orange800: '#532e02',
       orange900: '#3b1f01',
 
+      yellow50: '#FFF9EC',
+      yellow100: '#FEE7A5',
+      yellow200: '#EBC727',
+      yellow300: '#C8A91F',
+      yellow400: '#A98F14',
+      yellow500: '#89730A',
+      yellow600: '#6F5D06',
+      yellow700: '#594A04',
+      yellow800: '#423602',
+      yellow900: '#2E2501',
+
       blue50: '#f8f9ff',
       blue100: '#e2e7fe',
       blue200: '#bac7fd',
@@ -70,6 +81,39 @@ const stitchesConfig = createCss({
       blue700: '#0847a1',
       blue800: '#043379',
       blue900: '#022357',
+
+      cyan50: '#F4FAFF',
+      cyan100: '#D3EBFE',
+      cyan200: '#88D2FD',
+      cyan300: '#25B8EF',
+      cyan400: '#199BCC',
+      cyan500: '#0D7DA5',
+      cyan600: '#096687',
+      cyan700: '#05516D',
+      cyan800: '#033C51',
+      cyan900: '#012939',
+
+      purple50: '#F9F9FF',
+      purple100: '#E9E5FE',
+      purple200: '#CCC2FD',
+      purple300: '#B09EFC',
+      purple400: '#987CFC',
+      purple500: '#8052FC',
+      purple600: '#6D20FB',
+      purple700: '#590BD4',
+      purple800: '#4106A0',
+      purple900: '#2D0375',
+
+      violet50: '#FBF8FF',
+      violet100: '#F1E3FE',
+      violet200: '#E0BBFD',
+      violet300: '#D191FC',
+      violet400: '#C565FC',
+      violet500: '#B912F9',
+      violet600: '#970CCC',
+      violet700: '#7A08A6',
+      violet800: '#5B047D',
+      violet900: '#41025A',
 
       // Theme-specific
       foreground: '$grey950',
@@ -156,11 +200,9 @@ const stitchesConfig = createCss({
       full: '50%',
     },
     shadows: {
-      0: '0 1px 3px hsla(0, 0%, 0%, .12), 0 1px 2px hsla(0, 0%, 0%, .24)',
-      1: '0 3px 6px hsla(0, 0%, 0%, .15), 0 2px 4px hsla(0, 0%, 0%, .12)',
-      2: '0 10px 20px hsla(0, 0%, 0%, .15), 0 3px 6px hsla(0, 0%, 0%, .10)',
-      3: '0 15px 25px hsla(0, 0%, 0%, .15), 0 5px 10px hsla(0, 0%, 0%, .2)',
-      4: '0 20px 40px hsla(0, 0%, 0%, .2)',
+      0: '0 1px 3px hsla(212 27% 24% / .12), 0 1px 2px hsla(0 0% 100% / .24)',
+      1: '0 3px 6px hsla(212 27% 24% / .15), 0 2px 4px hsla(0 0% 100% / .12)',
+      2: '0 10px 20px hsla(212 27% 24% / .15), 0 3px 6px hsla(0 0% 100% / .10)',
     },
     zIndices: {},
     transitions: {},
@@ -229,9 +271,47 @@ export const {
   theme,
   keyframes,
   getCssString,
-} = stitchesConfig
+} = config
 
-export type CSS = StitchesCss<typeof stitchesConfig>
+export type CSS = StitchesCss<typeof config>
+
+export const dark = theme('topic__theme--dark', {
+  colors: {
+    grey50: '#1E262B',
+    grey100: '#2D353C',
+    grey200: '#414A4F',
+    grey300: '#535D63',
+    grey400: '#6A7278',
+    grey500: '#899197',
+    grey600: '#A7ADB3',
+    grey700: '#C2C8C8',
+    grey800: '#E2E6EA',
+    grey900: '#EAEDF0',
+    grey950: '#F9F9F9',
+
+    // Theme-specific
+    foreground: '$grey950',
+    background: '$grey50',
+
+    // Guidance palettes
+    successHigh: '$green50',
+    successLow: '$green400',
+
+    dangerHigh: '$red50',
+    dangerLow: '$red400',
+
+    warningHigh: '$orange50',
+    warningLow: '$orange400',
+
+    infoHigh: '$blue50',
+    infoLow: '$blue400',
+  },
+  shadows: {
+    0: 'none',
+    1: 'none',
+    2: 'none',
+  },
+})
 
 const globalStyles = globalCss({
   ':root, body': {

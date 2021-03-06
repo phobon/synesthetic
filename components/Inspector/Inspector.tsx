@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, Card, Text, Button, VStack } from '~primitives'
+import { Box, Card, Text, Button, Stack } from '~primitives'
 import { motion, MotionProps, AnimatePresence } from 'framer-motion'
 
 import { Chevron } from '~components/Icons'
@@ -35,7 +35,7 @@ export const Inspector = ({ ...props }: InspectorProps) => {
         <motion.section
           className={cn(
             Card.className,
-            VStack.className,
+            Stack.className,
             css({
               padding: '$3 $3 $3 $4',
               pointerEvents: 'all',
@@ -58,7 +58,7 @@ export const Inspector = ({ ...props }: InspectorProps) => {
               })()
             )}
           >
-            <VStack
+            <Stack
               css={{
                 alignItems: 'flex-start',
               }}
@@ -74,7 +74,7 @@ export const Inspector = ({ ...props }: InspectorProps) => {
                 Scape
               </Text>
               <Text css={{ fontSize: '$1' }}>Some smaller text</Text>
-            </VStack>
+            </Stack>
 
             <Button
               onClick={() => setInspectorExpanded((previous) => !previous)}
