@@ -1,37 +1,36 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
 import React, { useState } from 'react'
-import { Stack, StackProps, Text, Card } from '@phobon/base'
-import { Avatar, Popup } from '@phobon/grimoire'
+import { Leva } from 'leva'
 
-import { SynestheticUser, useUserStore } from '@/store'
+import { Box, Text, Card } from '~primitives'
+import { SynestheticUser, useUserStore } from '~store'
+import { css } from '~design'
 
-export const Status = ({
-  ...props
-}: StackProps & React.HTMLAttributes<HTMLDivElement>) => {
+export type StatusProps = React.ComponentProps<typeof Box>
+
+export const Status = ({ ...props }: StatusProps) => {
   const user = useUserStore<SynestheticUser>((state) => state)
 
   return (
-    <Stack
+    <Box
       as='section'
-      gridArea='status'
-      fullWidth
-      fullHeight
       css={{
         pointerEvents: 'all',
+        gridArea: 'status',
+        width: '100%',
+        height: '100%',
+        paddingRight: '$5',
+        paddingTop: '$5',
+        color: '#fff',
       }}
       {...props}
     >
-      <Popup
-        trigger={<Avatar name={user.displayName} />}
-        variant='clean'
-        shape='circle'
-      >
-        <Card bg='background' p={2} borderRadius={3}>
-          <Text>Test</Text>
-        </Card>
-      </Popup>
-    </Stack>
+      <Leva
+        // detached         // default = true,  false would make the pane fill the parent dom node it's rendered in.
+        // oneLineLabels    // default = false, alternative layout for labels, with labels and fields on separate rows
+        hideTitleBar // default = false, hides the GUI header
+        // collapsed        // default = false, when true the GUI is collpased
+        // hidden           // default = false, when true the GUI is hidden
+      />
+    </Box>
   )
 }

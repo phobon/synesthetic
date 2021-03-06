@@ -13,7 +13,7 @@ export interface PlaneProps {
 export const Plane = ({
   color = 'white',
   map,
-  args = [1, 1, 32, 32],
+  args = [1000, 1000, 32, 32],
   ...props
 }: PlaneProps & any) => (
   <a.mesh {...props}>

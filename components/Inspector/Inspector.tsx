@@ -1,20 +1,13 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
 import { useState } from 'react'
-import { Box, Card, Grid, GridProps, Text, Stack } from '@phobon/base'
-import { Button } from '@phobon/grimoire'
+import { Box, Card, Text, Button, Stack } from '~primitives'
 import { motion, MotionProps, AnimatePresence } from 'framer-motion'
 
-import { Chevron } from '@/components/Icons'
+import { Chevron } from '~components/Icons'
 
-type InspectorProps = GridProps &
-  React.HTMLAttributes<HTMLDivElement> &
-  MotionProps
+import { css } from '~design'
+import { cn } from '~utils/cn'
 
-const MotionGrid = motion.custom(Grid)
-const MotionCard = motion.custom(Card)
-const MotionBox = motion.custom(Box)
+type InspectorProps = React.HTMLAttributes<HTMLDivElement> & MotionProps
 
 export const Inspector = ({ ...props }: InspectorProps) => {
   const [inspectorExpanded, setInspectorExpanded] = useState<boolean>(
@@ -22,64 +15,87 @@ export const Inspector = ({ ...props }: InspectorProps) => {
   )
 
   return (
-    <MotionGrid
-      as='aside'
-      fullWidth
-      fullHeight
-      css={{
-        display: 'grid',
-        gridArea: 'inspector',
-        placeItems: 'start',
-        gridTemplateRows: '1fr',
-        gridTemplateColumns: '1fr',
-        pointerEvents: 'none',
-      }}
+    <motion.aside
+      className={cn(
+        Box.className,
+        css({
+          gridArea: 'inspector',
+          placeItems: 'start',
+          gridTemplateRows: '1fr',
+          gridTemplateColumns: '1fr',
+          pointerEvents: 'none',
+          width: '100%',
+          height: '100%',
+          padding: '$3',
+        })()
+      )}
       {...props}
     >
       <AnimatePresence presenceAffectsLayout exitBeforeEnter>
-        <MotionCard
-          fullWidth
-          borderRadius={5}
-          bg='background'
-          alignItems='center'
-          justifyContent='center'
-          pl={4}
-          pr={3}
-          py={3}
+        <motion.section
+          className={cn(
+            Card.className,
+            Stack.className,
+            css({
+              padding: '$3 $3 $3 $4',
+              pointerEvents: 'all',
+              width: '100%',
+              borderRadius: '$4',
+              backgroundColor: '$background',
+            })()
+          )}
           key='synesthetic__inspector'
           layout
-          css={{
-            pointerEvents: 'all',
-          }}
         >
-          <MotionBox
-            fullWidth
-            justifyContent='space-between'
+          <motion.div
             layout
             key='synesthetic__inspector__header'
+            className={cn(
+              Box.className,
+              css({
+                width: '100%',
+                justifyContent: 'space-between',
+              })()
+            )}
           >
-            <Stack>
-              <Text as='h1' fontSize={2} lineHeight={1} color='grayscale.3'>
+            <Stack
+              css={{
+                alignItems: 'flex-start',
+              }}
+            >
+              <Text
+                as='h1'
+                css={{
+                  fontSize: '$3',
+                  lineHeight: '$tight',
+                  color: '$grey900',
+                }}
+              >
                 Scape
               </Text>
-              <Text fontSize={0}>Some smaller text</Text>
+              <Text css={{ fontSize: '$1' }}>Some smaller text</Text>
             </Stack>
 
             <Button
               onClick={() => setInspectorExpanded((previous) => !previous)}
               shape='square'
               variant='tertiary'
-              size='m'
+              size='medium'
             >
               <Chevron />
             </Button>
-          </MotionBox>
+          </motion.div>
           {inspectorExpanded && (
-            <MotionBox
-              fullWidth
-              flex='1'
+            <motion.div
               key='synesthetic__inspector__container'
               layout
+              className={cn(
+                Box.className,
+                css({
+                  width: '100%',
+                  flex: '1,',
+                })()
+              )}
               initial={{
                 opacity: 0,
               }}
@@ -87,11 +103,11 @@ export const Inspector = ({ ...props }: InspectorProps) => {
               exit={{ opacity: 0 }}
             >
               asdf
-            </MotionBox>
+            </motion.div>
           )}
-        </MotionCard>
+        </motion.section>
       </AnimatePresence>
-    </MotionGrid>
+    </motion.aside>
   )
 }
 

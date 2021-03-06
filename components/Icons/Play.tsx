@@ -1,4 +1,4 @@
-import { Vector, VectorProps } from '@phobon/base'
+import { Vector, VectorProps } from '~primitives/vector'
 
 export const Play = ({ width, height, ...props }: VectorProps) => (
   <Vector width={width} height={height} viewBox='0 0 16 16' {...props}>

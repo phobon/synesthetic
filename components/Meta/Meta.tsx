@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import Head from 'next/head'
 
 interface MetaProps {
@@ -9,13 +9,13 @@ interface MetaProps {
   twitterCard: 'summary' | 'summary_card_large'
 }
 
-const Meta: FunctionComponent<MetaProps> = ({
-  title,
-  description,
-  url,
-  image,
-  twitterCard,
-}) => {
+export const Meta = ({
+  title = 'synesthetic',
+  description = 'https://github.com/phobon/synesthetic',
+  url = 'https://github.com/phobon/synesthetic',
+  image = 'Visual auditory impulse and stimulation',
+  twitterCard = 'summary',
+}: MetaProps) => {
   const metaTitle = title || description
   return (
     <Head>
@@ -41,13 +41,3 @@ const Meta: FunctionComponent<MetaProps> = ({
     </Head>
   )
 }
-
-Meta.defaultProps = {
-  title: 'synesthetic',
-  url: 'https://github.com/phobon/synesthetic',
-  image: 'https://github.com/phobon/synesthetic',
-  description: 'Visual auditory impulse and stimulation',
-  twitterCard: 'summary',
-}
-
-export default Meta
