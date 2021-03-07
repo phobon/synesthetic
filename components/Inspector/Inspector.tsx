@@ -1,18 +1,49 @@
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { Box, Card, Text, Button, Stack } from '~primitives'
 import { motion, MotionProps, AnimatePresence } from 'framer-motion'
+import { v4 as uuidv4 } from 'uuid'
 
 import { Chevron } from '~components/Icons'
 
 import { css } from '~design'
 import { cn } from '~utils/cn'
+import { useSceneTreeStore } from '~store/useSceneTreeStore'
+import { AwwwardsPlane } from '~components/Planes'
 
 type InspectorProps = React.HTMLAttributes<HTMLDivElement> & MotionProps
+
+const colors = ['#ff0000', '#00ff00', '#0000ff']
 
 export const Inspector = ({ ...props }: InspectorProps) => {
   const [inspectorExpanded, setInspectorExpanded] = useState<boolean>(
     () => false
   )
+  const setSceneTree = useSceneTreeStore((state) => state.setSceneTree)
+
+  const currentColorRef = useRef<number>(0)
+  const currentPositionRef = useRef<number>(0)
+
+  const addPlane = useCallback(() => {
+    const id = uuidv4()
+    const color = colors[currentColorRef.current]
+    const position = [0, 0, currentPositionRef.current]
+
+    setSceneTree(
+      <AwwwardsPlane
+        key={id}
+        sceneId={id}
+        position={position}
+        amplitude={50}
+        frequency={2}
+        coefficient={0.1}
+        timeScale={0.5}
+        color={color}
+      />
+    )
+
+    currentPositionRef.current += 50
+    currentColorRef.current = (currentColorRef.current + 1) % colors.length
+  }, [])
 
   return (
     <motion.aside
@@ -58,22 +89,22 @@ export const Inspector = ({ ...props }: InspectorProps) => {
               })()
             )}
           >
-            <Stack
-              css={{
-                alignItems: 'flex-start',
-              }}
-            >
-              <Text
-                as='h1'
-                css={{
-                  fontSize: '$3',
-                  lineHeight: '$tight',
-                  color: '$grey900',
+            <Stack direction='row' gap='3'>
+              <Button shape='square' onClick={addPlane}>
+                P
+              </Button>
+              <Button shape='square' onClick={addPlane}>
+                C
+              </Button>
+              <Button
+                shape='square'
+                disabled
+                onClick={() => {
+                  console.log('sphere')
                 }}
               >
-                Scape
-              </Text>
-              <Text css={{ fontSize: '$1' }}>Some smaller text</Text>
+                S
+              </Button>
             </Stack>
 
             <Button
@@ -101,9 +132,7 @@ export const Inspector = ({ ...props }: InspectorProps) => {
               }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-            >
-              asdf
-            </motion.div>
+            ></motion.div>
           )}
         </motion.section>
       </AnimatePresence>

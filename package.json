@@ -33,6 +33,7 @@
     "swr": "^0.4.2",
     "three": "^0.126.0",
     "three-stdlib": "^0.0.15",
+    "uuid": "^8.3.2",
     "web-audio-beat-detector": "^8.1.1",
     "webpack": "^5.24.2",
     "zustand": "^3.3.3"

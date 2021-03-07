@@ -28,7 +28,7 @@ export const Layout = ({
           gridTemplateRows: '8rem 1fr 8rem',
           gridTemplateColumns: 'minmax(45rem, 20%) 1fr auto',
           gridTemplateAreas: `"inspector . status"
-                              "inspector . ."
+                              "inspector . status"
                               "timeline timeline timeline"`,
           gridGap: '$5',
           left: 0,

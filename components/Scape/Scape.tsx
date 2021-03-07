@@ -16,6 +16,7 @@ import {
 } from '~components/Planes'
 import { useFrame, useThree } from 'react-three-fiber'
 import { useTimelineStore } from '~store/useTimelineStore'
+import { useSceneTreeStore } from '~store/useSceneTreeStore'
 // import { NoisePatchMaterial } from '~materials/NoisePatchMaterial'
 // import { WaveMaterial } from '~materials/WaveMaterial'
 // import { AwwwardsMaterial } from '~materials/AwwwardsMaterial'
@@ -26,6 +27,7 @@ export const Scape = ({ images, args = [1, 1, 32, 32], ...props }: any) => {
   // const materialRef = useRef(null)
   const meshRef = useRef<any>(null)
   const isPlaying = useTimelineStore((state) => state.isPlaying)
+  const sceneTree = useSceneTreeStore((state) => state.sceneTree)
 
   const factorRef = useRef<number>(0)
 
@@ -50,20 +52,7 @@ export const Scape = ({ images, args = [1, 1, 32, 32], ...props }: any) => {
     // console.log(meshRef.current.factor)
   })
 
-  return (
-    <Suspense fallback={null}>
-      <group>
-        <AwwwardsPlane
-          position={[0, 0, 0]}
-          map={img}
-          amplitude={50}
-          frequency={2}
-          coefficient={0.1}
-          timeScale={0.5}
-        />
-        {/* <SandboxPlane position={[0, 0, 0]} /> */}
-        {/* <PlaneWavePlane position={[1.5, 0, 0]} ref={meshRef} map={img} /> */}
-      </group>
-    </Suspense>
-  )
+  console.log(sceneTree)
+
+  return <>{sceneTree}</>
 }

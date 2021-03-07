@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { NextPage, GetStaticPaths, GetStaticProps } from 'next'
 import dynamic from 'next/dynamic'
+import { useSceneTreeStore } from '~store/useSceneTreeStore'
 
 const Scape = dynamic(
   () => import('../components/Scape').then((mod) => mod.Scape),
@@ -16,11 +17,10 @@ const IndexPage: NextPage = () => {
   const props: any = {
     images: ['https://source.unsplash.com/random/1280x1024'],
   }
-  return (
-    <Canvas>
-      <Scape {...props} />
-    </Canvas>
-  )
+
+  const sceneTree = useSceneTreeStore((state) => state.sceneTree)
+
+  return <Canvas>{sceneTree}</Canvas>
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
