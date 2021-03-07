@@ -10,7 +10,8 @@ export type StatusProps = React.ComponentProps<typeof Stack>
 
 export const Status = ({ ...props }: StatusProps) => {
   const user = useUserStore<SynestheticUser>((state) => state)
-  const levaStores = useLevaStore((state) => state.stores)
+  // const levaStores = useLevaStore((state) => state.stores)
+  const selectedStore = useLevaStore((state) => state.selectedStore)
 
   return (
     <Stack
@@ -34,9 +35,12 @@ export const Status = ({ ...props }: StatusProps) => {
         // collapsed        // default = false, when true the GUI is collpased
         // hidden           // default = false, when true the GUI is hidden
       />
-      {levaStores.map(({ id, store }) => (
+      {selectedStore && (
+        <LevaPanel key={selectedStore?.id} store={selectedStore?.store} />
+      )}
+      {/* {levaStores.map(({ id, store }) => (
         <LevaPanel key={id} store={store} />
-      ))}
+      ))} */}
     </Stack>
   )
 }

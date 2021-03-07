@@ -1,12 +1,14 @@
 import React, { useEffect, useRef } from 'react'
 import { a } from '@react-spring/three'
 import * as THREE from 'three'
-import { useCreateStore, useControls, folder } from 'leva'
+import { folder } from 'leva'
 import mergeRefs from 'react-merge-refs'
 
 import { AwwwardsMaterial } from '~materials/AwwwardsMaterial'
 import { useFrame } from 'react-three-fiber'
 import { useLevaStore } from '~store/useLevaStore'
+
+import { useSceneObject } from '~hooks/useSceneObject'
 
 const BASE_SIZE = 500
 const BASE_SEGMENTS = 32
@@ -22,31 +24,15 @@ export const AwwwardsPlane = React.forwardRef<any, any>(
       coefficient,
       color,
       args = [BASE_SIZE, BASE_SIZE, BASE_SEGMENTS, BASE_SEGMENTS],
+      onClick: originalOnClick,
       ...props
     },
     ref
   ) => {
     const meshRef = useRef<any>()
-    const store = useCreateStore()
-    const setStores = useLevaStore((state) => state.setStores)
 
-    useEffect(() => {
-      if (!store) {
-        return
-      }
-
-      setStores(sceneId, store)
-    }, [store])
-
-    const {
-      position,
-      dimensions,
-      timeScale: _timeScale,
-      amplitude: _amplitude,
-      frequency: _frequency,
-      coefficient: _coefficient,
-      color: _color,
-    } = useControls(
+    const { position, dimensions, onClick, ...storeProps } = useSceneObject(
+      sceneId,
       {
         mesh: folder({
           position: {
@@ -75,7 +61,7 @@ export const AwwwardsPlane = React.forwardRef<any, any>(
           value: color,
         },
       },
-      { store }
+      { originalOnClick }
     )
 
     useEffect(() => {
@@ -99,17 +85,14 @@ export const AwwwardsPlane = React.forwardRef<any, any>(
     useFrame(() => {})
 
     return (
-      <a.mesh key={sceneId} ref={mergeRefs([ref, meshRef])} {...props}>
+      <a.mesh
+        key={sceneId}
+        ref={mergeRefs([ref, meshRef])}
+        onClick={onClick}
+        {...props}
+      >
         <planeGeometry args={args} />
-        <AwwwardsMaterial
-          map={map}
-          side={THREE.DoubleSide}
-          timeScale={_timeScale}
-          amplitude={_amplitude}
-          frequency={_frequency}
-          coefficient={_coefficient}
-          color={_color}
-        />
+        <AwwwardsMaterial map={map} side={THREE.DoubleSide} {...storeProps} />
       </a.mesh>
     )
   }
