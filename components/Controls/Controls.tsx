@@ -1,15 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Leva, LevaPanel } from 'leva'
 
-import { Stack, Text, Card } from '~primitives'
-import { SynestheticUser, useUserStore } from '~store'
+import { Stack } from '~primitives'
 import { useLevaStore } from '~store/useLevaStore'
-import { css } from '~design'
 
-export type StatusProps = React.ComponentProps<typeof Stack>
+export type ControlsProps = React.ComponentProps<typeof Stack>
 
-export const Status = ({ ...props }: StatusProps) => {
-  const user = useUserStore<SynestheticUser>((state) => state)
+export const Controls = ({ ...props }: ControlsProps) => {
   // const levaStores = useLevaStore((state) => state.stores)
   const selectedStore = useLevaStore((state) => state.selectedStore)
 
@@ -18,12 +15,12 @@ export const Status = ({ ...props }: StatusProps) => {
       as='section'
       css={{
         pointerEvents: 'all',
-        gridArea: 'status',
+        gridArea: 'controls',
+        position: 'relative',
         width: '100%',
         height: '100%',
         paddingRight: '$5',
         paddingTop: '$5',
-        color: '#fff',
       }}
       {...props}
     >

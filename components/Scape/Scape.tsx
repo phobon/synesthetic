@@ -9,11 +9,7 @@ import React, {
 
 import { useTextures } from '~hooks/useTextures'
 
-import {
-  VerticalLerpPlane,
-  SandboxPlane,
-  AwwwardsPlane,
-} from '~components/Planes'
+import { VerticalLerpPlane, SandboxPlane, AwwwardsPlane } from '~meshes/Planes'
 import { useFrame, useThree } from 'react-three-fiber'
 import { useTimelineStore } from '~store/useTimelineStore'
 import { useSceneTreeStore } from '~store/useSceneTreeStore'

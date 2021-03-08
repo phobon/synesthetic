@@ -2,7 +2,7 @@ import React from 'react'
 import { Grid } from '~primitives'
 
 import { Inspector } from '~components/Inspector'
-import { Status } from '~components/Status'
+import { Controls } from '~components/Controls'
 import { Timeline } from '~components/Timeline'
 import { Main } from './Main'
 
@@ -27,8 +27,8 @@ export const Layout = ({
           position: 'absolute',
           gridTemplateRows: '8rem 1fr 8rem',
           gridTemplateColumns: 'minmax(45rem, 20%) 1fr auto',
-          gridTemplateAreas: `"inspector . status"
-                              "inspector . status"
+          gridTemplateAreas: `"inspector . controls"
+                              "inspector . controls"
                               "timeline timeline timeline"`,
           gridGap: '$5',
           left: 0,
@@ -38,7 +38,7 @@ export const Layout = ({
         {...props}
       >
         <Inspector />
-        <Status />
+        <Controls />
         <Timeline src={src} />
       </Grid>
     </>

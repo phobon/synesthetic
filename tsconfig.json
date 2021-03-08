@@ -16,7 +16,9 @@
       "~api/*": ["pages/api/*"],
       "~api": ["pages/api/index"],
       "~materials": ["materials/index"],
-      "~materials/*": ["materials/*"]
+      "~materials/*": ["materials/*"],
+      "~meshes/*": ["meshes/*"],
+      "~meshes": ["meshes/index"]
     },
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],

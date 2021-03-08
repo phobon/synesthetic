@@ -8,7 +8,9 @@ import { Chevron } from '~components/Icons'
 import { css } from '~design'
 import { cn } from '~utils/cn'
 import { useSceneTreeStore } from '~store/useSceneTreeStore'
-import { AwwwardsPlane } from '~components/Planes'
+
+import { AwwwardsPlane } from '~meshes/Planes'
+import { ClassicNoiseSphere } from '~meshes/Spheres'
 
 type InspectorProps = React.HTMLAttributes<HTMLDivElement> & MotionProps
 
@@ -29,16 +31,17 @@ export const Inspector = ({ ...props }: InspectorProps) => {
     const position = [0, 0, currentPositionRef.current]
 
     setSceneTree(
-      <AwwwardsPlane
-        key={id}
-        sceneId={id}
-        position={position}
-        amplitude={50}
-        frequency={2}
-        coefficient={0.1}
-        timeScale={0.5}
-        color={color}
-      />
+      <ClassicNoiseSphere key={id} sceneId={id} />
+      // <AwwwardsPlane
+      //   key={id}
+      //   sceneId={id}
+      //   position={position}
+      //   amplitude={50}
+      //   frequency={2}
+      //   coefficient={0.1}
+      //   timeScale={0.5}
+      //   color={color}
+      // />
     )
 
     currentPositionRef.current += 50
