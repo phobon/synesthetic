@@ -33,18 +33,8 @@ export const AwwwardsPlane = React.forwardRef<any, any>(
 
     const { position, dimensions, onClick, ...storeProps } = useSceneObject(
       sceneId,
+      args,
       {
-        mesh: folder({
-          position: {
-            value: [0, 0, 0],
-            step: 1,
-          },
-          dimensions: {
-            value: { width: args[0], height: args[1] },
-            step: 1,
-            min: 0,
-          },
-        }),
         timeScale: {
           value: timeScale,
         },

@@ -36,30 +36,22 @@ export const ClassicNoiseSphere = React.forwardRef<any, any>(
 
     const { position, dimensions, onClick, ...storeProps } = useSceneObject(
       sceneId,
+      args,
       {
-        mesh: folder({
-          position: {
-            value: [0, 0, 0],
-            step: 1,
+        distortion: folder({
+          speed: {
+            value: speed,
           },
-          dimensions: {
-            value: { width: args[0], height: args[1] },
-            step: 1,
-            min: 0,
+          noiseStrength: {
+            value: noiseStrength,
+          },
+          frequency: {
+            value: frequency,
+          },
+          amplitude: {
+            value: amplitude,
           },
         }),
-        speed: {
-          value: speed,
-        },
-        noiseStrength: {
-          value: noiseStrength,
-        },
-        frequency: {
-          value: frequency,
-        },
-        amplitude: {
-          value: amplitude,
-        },
         color: folder({
           intensity: {
             value: intensity,

@@ -1,10 +1,11 @@
 import { useCallback, useEffect } from 'react'
-import { useCreateStore, useControls } from 'leva'
+import { useCreateStore, useControls, folder } from 'leva'
 
 import { useLevaStore } from '~store/useLevaStore'
 
 export const useSceneObject = (
   id,
+  args,
   controls: any = {},
   options: any = {}
 ): any => {
@@ -48,7 +49,28 @@ export const useSceneObject = (
   }, [])
 
   // Modified controls for leva store
-  const modifiedControls = useControls(controls, { store })
+  const modifiedControls = useControls(
+    {
+      object: folder({
+        position: {
+          value: [0, 0, 0],
+          step: 1,
+        },
+        dimensions: {
+          value: { width: args[0], height: args[1] },
+          step: 1,
+          min: 0,
+        },
+      }),
+      beatmatching: folder({
+        timing: {
+          value: 0,
+        },
+      }),
+      ...controls,
+    },
+    { store }
+  )
 
   return {
     ...modifiedControls,
