@@ -1,5 +1,5 @@
+export * from './AwwwardsPlane'
 export * from './Plane'
+export * from './PlaneWavePlane'
 export * from './SandboxPlane'
 export * from './VerticalLerpPlane'
-export * from './AwwwardsPlane'
-export * from './PlaneWavePlane'

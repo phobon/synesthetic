@@ -1,11 +1,14 @@
-import { styled } from '~design'
+import { CSS, css, styled } from '~design'
 
-export const Spacer = styled('span', {
+const spacerStyles: CSS = {
   backgroundColor: '$grey100',
   height: '2px',
   width: '80%',
   display: 'block',
   minWidth: 0,
-})
+}
+
+export const spacer = css(spacerStyles)
+export const Spacer = styled('span', spacerStyles)
 
 Spacer.displayName = 'Spacer'

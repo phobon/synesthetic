@@ -1,4 +1,4 @@
-import { config, styled } from '~design'
+import { CSS, config, styled, css } from '~design'
 
 // Generate 'boxShadow' prop values from theme config
 const { shadows } = config.theme
@@ -12,7 +12,7 @@ const boxShadow = Object.keys(shadows).reduce(
   {}
 ) as { [key in ShadowKey]: any }
 
-export const Card = styled('section', {
+const cardStyles: CSS = {
   $$cardShadow: 'initial',
   display: 'flex',
   position: 'relative',
@@ -51,6 +51,9 @@ export const Card = styled('section', {
     boxShadow: '2',
     size: 'auto',
   },
-})
+}
+
+export const card = css(cardStyles)
+export const Card = styled('section', cardStyles)
 
 export type CardProps = React.ComponentProps<typeof Card>

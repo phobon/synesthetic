@@ -1,6 +1,6 @@
-import { styled } from '~design'
+import { CSS, css, styled } from '~design'
 
-export const Text = styled('p', {
+const textStyles: CSS = {
   boxSizing: 'border-box',
   display: 'block',
   minWidth: 0,
@@ -8,6 +8,9 @@ export const Text = styled('p', {
   fontSize: '$1',
   textAlign: 'left',
   lineHeight: '$normal',
-})
+}
+
+export const text = css(textStyles)
+export const Text = styled('p', textStyles)
 
 Text.displayName = 'Text'

@@ -1,6 +1,8 @@
 import React from 'react'
 import { a } from '@react-spring/three'
 
+// import { factories } from '../factories'
+
 import { PlaneWaveMaterial } from '~materials/PlaneWaveMaterial'
 
 export const PlaneWavePlane = React.forwardRef<any, any>(
@@ -11,3 +13,7 @@ export const PlaneWavePlane = React.forwardRef<any, any>(
     </a.mesh>
   )
 )
+
+// factories.set('PlaneWavePlane', (id: string, props?: any) => (
+//   <PlaneWavePlane id={id} key={id} {...props} />
+// ))

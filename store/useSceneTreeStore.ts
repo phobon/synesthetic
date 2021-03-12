@@ -2,7 +2,7 @@ import create, { GetState, SetState } from 'zustand'
 
 export type SceneTreeStore = {
   sceneTree?: any[]
-  setSceneTree: (data: any[]) => void
+  setSceneTree: (data: any) => void
 }
 
 export const useSceneTreeStore = create<SceneTreeStore>(

@@ -5,6 +5,8 @@ import { VerticalLerpMaterial } from '~materials/VerticalLerpMaterial'
 
 import { PlaneProps } from './Plane'
 
+// import { factories } from '../factories'
+
 export const VerticalLerpPlane = ({
   color = 'white',
   map,
@@ -28,3 +30,7 @@ export const VerticalLerpPlane = ({
     </a.mesh>
   )
 }
+
+// factories.set('VerticalLerpPlane', (id: string, props?: any) => (
+//   <VerticalLerpPlane id={id} key={id} {...props} />
+// ))

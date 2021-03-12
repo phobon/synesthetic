@@ -1,6 +1,6 @@
-import { styled } from '~design'
+import { CSS, css, styled } from '~design'
 
-export const Box = styled('div', {
+const boxStyles: CSS = {
   display: 'flex',
   flex: 'none',
   alignItems: 'center',
@@ -8,6 +8,9 @@ export const Box = styled('div', {
   boxSizing: 'border-box',
   minWidth: 0,
   color: '$foreground',
-})
+}
+
+export const box = css(boxStyles)
+export const Box = styled('div', boxStyles)
 
 Box.displayName = 'Box'

@@ -136,7 +136,7 @@ export const Timeline = ({
         <Grid
           css={{
             height: '100%',
-            width: 4 / 5,
+            width: '80%',
             gridTemplateRows: '1fr',
             gridTemplateColumns: '1fr auto',
             pointerEvents: 'all',

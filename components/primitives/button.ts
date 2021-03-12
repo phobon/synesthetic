@@ -11,10 +11,10 @@ export const Button = styled('button', {
   userSelect: 'none',
 
   $$buttonSize: '$space$5',
-  $$buttonBorder: '$colors$grey300',
-  $$buttonBorderRadius: '6px',
-  $$buttonBg: '$colors$grey300',
-  $$buttonColor: '$colors$grey900',
+  $$buttonBorder: '$colors$grey900',
+  $$buttonBorderRadius: '0',
+  $$buttonBg: '$colors$grey900',
+  $$buttonColor: '$colors$grey100',
   $$buttonPadding: '$space$2',
 
   paddingLeft: '$$buttonPadding',
@@ -28,8 +28,8 @@ export const Button = styled('button', {
   stroke: '$$buttonColor',
 
   '&:hover': {
-    $$buttonBorder: '$colors$grey200',
-    $$buttonBg: '$colors$grey200',
+    $$buttonBorder: '$colors$grey800',
+    $$buttonBg: '$colors$grey800',
   },
 
   '&[aria-pressed="true"]': {

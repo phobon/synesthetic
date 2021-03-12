@@ -1,7 +1,13 @@
 import { Vector, VectorProps } from '~primitives/vector'
 
 export const Chevron = ({ width, height, ...props }: VectorProps) => (
-  <Vector width={width} height={height} viewBox='0 0 16 16' {...props}>
+  <Vector
+    width={width}
+    height={height}
+    viewBox='0 0 16 16'
+    css={{ fill: 'inherit' }}
+    {...props}
+  >
     <path
       fillRule='evenodd'
       clipRule='evenodd'
@@ -14,5 +20,4 @@ export const Chevron = ({ width, height, ...props }: VectorProps) => (
 Chevron.defaultProps = {
   width: 16,
   height: 16,
-  fill: 'grayscale.2',
 }

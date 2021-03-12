@@ -14,13 +14,17 @@ export const Controls = ({ ...props }: ControlsProps) => {
     <Stack
       as='section'
       css={{
-        pointerEvents: 'all',
         gridArea: 'controls',
         position: 'relative',
         width: '100%',
         height: '100%',
-        paddingRight: '$5',
-        paddingTop: '$5',
+        paddingRight: '$3',
+        paddingTop: '$3',
+        pointerEvents: 'none',
+
+        '> *': {
+          pointerEvents: 'all',
+        },
       }}
       {...props}
     >

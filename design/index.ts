@@ -15,6 +15,7 @@ export const config = createCss({
       grey800: '#414A4F',
       grey900: '#2D353C',
       grey950: '#1E262B',
+      grey1000: 'hsl(204 16% 6%)',
 
       accent50: '#FAFBFF',
       accent100: '#D7DFFD',
@@ -135,6 +136,8 @@ export const config = createCss({
       infoHigh: '$blue900',
       infoMedium: '$blue500',
       infoLow: '$blue100',
+
+      panelBackground: 'hsla(204 16% 6% / 80%)',
     },
     space: {
       0: '0px',
@@ -288,6 +291,7 @@ export const dark = theme('topic__theme--dark', {
     grey800: '#E2E6EA',
     grey900: '#EAEDF0',
     grey950: '#F9F9F9',
+    grey1000: '#fcfcfc',
 
     // Theme-specific
     foreground: '$grey950',

@@ -9,6 +9,8 @@ import { useFrame } from 'react-three-fiber'
 
 import { useSceneObject } from '~hooks/useSceneObject'
 
+// import { factories } from '../factories'
+
 const BASE_SIZE = 250
 const BASE_SEGMENTS = 256
 
@@ -106,3 +108,7 @@ export const ClassicNoiseSphere = React.forwardRef<any, any>(
     )
   }
 )
+
+// factories.set('ClassicNoiseSphere', (id: string, props?: any) => (
+//   <ClassicNoiseSphere id={id} key={id} {...props} />
+// ))

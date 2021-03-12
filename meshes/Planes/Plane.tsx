@@ -2,6 +2,8 @@ import React from 'react'
 import { Texture } from 'three'
 import { a } from '@react-spring/three'
 
+// import { factories } from '../factories'
+
 export interface PlaneProps {
   color?: string
   map?: Texture
@@ -21,3 +23,7 @@ export const Plane = ({
     <meshBasicMaterial attach='material' color={color} map={map} />
   </a.mesh>
 )
+
+// factories.set('Plane', (id: string, props?: any) => (
+//   <Plane id={id} key={id} {...props} />
+// ))

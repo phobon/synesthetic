@@ -10,6 +10,8 @@ import { useLevaStore } from '~store/useLevaStore'
 
 import { useSceneObject } from '~hooks/useSceneObject'
 
+// import { factories } from '../factories'
+
 const BASE_SIZE = 500
 const BASE_SEGMENTS = 32
 
@@ -18,11 +20,11 @@ export const AwwwardsPlane = React.forwardRef<any, any>(
     {
       sceneId,
       map,
-      timeScale,
-      amplitude,
-      frequency,
-      coefficient,
-      color,
+      timeScale = 2,
+      amplitude = 0.3,
+      frequency = 3.0,
+      coefficient = 0.2,
+      color = '#ff0000',
       args = [BASE_SIZE, BASE_SIZE, BASE_SEGMENTS, BASE_SEGMENTS],
       onClick: originalOnClick,
       ...props
@@ -87,3 +89,7 @@ export const AwwwardsPlane = React.forwardRef<any, any>(
     )
   }
 )
+
+// factories.set('AwwwardsPlane', (id: string, props?: any) => (
+//   <AwwwardsPlane id={id} key={id} {...props} />
+// ))
